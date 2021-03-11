@@ -1,0 +1,155 @@
+
+#load {
+    z-index: 1;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    width: 50px;
+    height: 50px;
+    display: none;
+}
+
+#valortempo {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: white;
+}
+
+#tooltip2 {
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    display: none;
+    margin-top: 8px;
+  }
+
+#toolti3 {
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    display: none;
+    margin-top: 8px;
+}
+
+.green {
+    background: green;
+}
+.orange {
+    background: #FFA500;
+}
+.red {
+    background: red;
+}
+.yellow {
+    background: yellow;
+}
+
+.btn-primary{
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+
+}
+
+.pamenstrs {
+    position: absolute;
+    top: -3px;
+    left: 37%;
+    width: 420px;
+    height: 0;
+    border-bottom: 100px solid rgb(245 245 245) !important;
+    transform: perspective(200px) rotateX(155deg);
+    -webkit-box-shadow: 0px 8px 20px 8px rgba(0,0,0,0.18);
+    -moz-box-shadow: 0px 8px 20px 8px rgba(0,0,0,0.18);
+    box-shadow: 0px 8px 20px 8px rgba(0,0,0,0.18);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.pamenstex{
+    position: absolute;
+    top: 19px;
+    left: 38%;
+    display: flex;
+    color: #005389;
+}
+
+.titulomidel{
+    position: absolute;
+    top: 0;
+    left: 39%;
+    height: 88px;
+    text-align: center;
+    width: 378px;
+}
+
+.titulo{
+    color: #005389;
+    margin-top: 6%;
+}
+
+.pamens{
+    background: #006eb6;
+    height: 64px;
+}
+
+.pamens2{
+    background: #005389;
+    height: 18px;
+}
+
+.pamens3{
+    margin: 5px;
+    /* display: inline-grid; */
+    z-index: 1;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.circulo {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%
+  }
+
+.lista{
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+.usu {
+    margin: 5px;
+    font-weight: bold;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+    text-align: -o-center; 
+    text-align: -ms-center;
+}
+
+.line-center{
+    margin:0;padding:0 10px;
+    background:#fff;
+    display:inline-block;
+}
+h2{
+
+    text-align:center;
+    position:relative;
+    z-index: -17;
+
+}
+h2:after{
+    content:"";
+    position:absolute;
+    top:50%;
+    left:0;
+    right:0;
+    border-top:solid 1px red;
+    z-index:-1;
+}
