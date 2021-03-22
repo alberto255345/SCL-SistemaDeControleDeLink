@@ -24,11 +24,6 @@ include("../linkgeral.php");
 <body>
 <div>
     <div class="pamens">
-        <div class="containerMenu" onclick="myFunctionMenu(this)">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-        </div>
     </div>
     <div class="pamens2"></div>
 </div>

@@ -23,7 +23,7 @@ if(isset($_SESSION['usuario_log'])){
   <div class="heidi"></div>
   <div id="container1" class="container gssss colorr1">
                 <div class="configdiv valro">
-                    <div>SGT</div>
+                    <div>SCL</div>
                 </div>
                 <div class="configdiv gfhs">
                         <form>

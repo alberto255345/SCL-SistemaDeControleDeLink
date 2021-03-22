@@ -32,11 +32,6 @@ include("../linkgeral.php");
 <body>
 <div>
     <div class="pamens">
-    <div class="containerMenu" onclick="myFunctionMenu(this)">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-        </div>
     </div>
     <div class="pamens2"></div>
 </div>
@@ -144,7 +139,7 @@ include("../menu/menu.php");
     </div>
   </div>
 
-<form id="form1serialize" action="">
+
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
@@ -156,7 +151,7 @@ include("../menu/menu.php");
     <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="card-body" style="text-align: initial;">
         
-
+      <form id="form1serialize" action="">
       <div class="input-field inline">
                 <input name="operadora" id="OPERADORA" type="text" value="<?PHP echo $dadolink->operadora; ?>" >
                 <label for="OPERADORA">OPERADORA</label>
@@ -236,7 +231,7 @@ include("../menu/menu.php");
                 <input name="dataativacao" id="DATAATIVACAO" type="DATE" value="<?PHP echo $dadolink->data_ativação; ?>" >
                 <label for="DATAATIVACAO">DATA DA ATIVAÇÃO</label>
        </div>
-
+       </form>
        <?PHP 
         
         if(!empty($_GET['id']) and isset($_GET['id'])){
@@ -259,7 +254,7 @@ include("../menu/menu.php");
       </div>
     </div>
   </div>
-</form>
+
 
 
 </div>

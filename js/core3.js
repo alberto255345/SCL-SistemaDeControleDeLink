@@ -24,6 +24,7 @@ $(document).ready(function(){
         $(".containerMenu").css("display","inline");
         $("#separa").css("margin","5px");
         $("#separa").css("display","contents");
+
     } else{
         // The viewport is at least 768 pixels wide
         // alert("This is a tablet or desktop.");

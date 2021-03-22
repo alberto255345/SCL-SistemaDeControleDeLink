@@ -24,11 +24,6 @@ include("../linkgeral.php");
 <body>
 <div>
     <div class="pamens">
-        <div class="containerMenu" onclick="myFunctionMenu(this)">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-        </div>
     </div>
     <div class="pamens2"></div>
 </div>
@@ -50,8 +45,42 @@ include("../menu/menu.php");
     <a id="donwload" href="#" class="myButton">Download Base</a>
 </div>
 
+<div id="mobileFilter">
+    <select id="saidaselect" class="form-control" aria-label="Default select">
+    <option selected disabled>Selecione Opção</option>
+    </select>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Digite..." aria-label="Pesquisar" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Filtrar</button>
+        </div>
+    </div>
+    <span id="filtrarid"></span>
+</div>
+
 <table id="example" class="display" style="width:100%">
         <thead>
+            <tr>
+                <th>ID</th>
+                <th>Unidade</th>
+                <th>UF</th>
+                <th>Cidade</th>
+                <th>Endereço</th>
+                <th class="titulo1">Unidade Ativa</th>
+                <th class="titulo1">Link Ativo</th>
+                <th>Tipo</th>
+                <th>Operadora</th>
+                <th>Vel. (MB)</th>
+                <th>Circuito</th>
+                <th>IP Link</th>
+                <th>FortiGate</th>
+                <th>IP FortiGate</th>
+                <th class="titulo1">Interface FortiGate</th>
+                <th>IP Operadora</th>
+                <th>Unidade Concentradora</th>
+            </tr>
+        </thead>
+        <tfoot>
             <tr>
                 <th>ID</th>
                 <th>Unidade</th>
@@ -71,127 +100,19 @@ include("../menu/menu.php");
                 <th>IP Operadora</th>
                 <th>Unidade Concentradora</th>
             </tr>
-        </thead>
-      
+        </tfoot>
 
     </table>
 
 </div>
 </div>
- 
 
 <script src='/SCL/dist/js/jquery-3.5.1.js'></script>
 <script src='/SCL/dist/js/bootstrap.bundle.min.js'></script>
 <script src="/SCL/js/coreMenu.js"></script>
 <script src="/SCL/js/core3.js"></script>
-
 <script src="/SCL/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js"></script>
 <script src="/SCL/js/jquery-ui.js"></script>
-<script>
-
-
-$(document).ready(function() {
-
-
-    $("#donwload").click(function() {
-        var table = $('#example').DataTable();
- 
-        alert( 'Column index 0 is '+
-            (table.column( 0 ).visible() === true ? 'visible' : 'not visible')
-        );
-
-        table.column( 0 ).visible( false );
-    });
-
-    $('#example thead tr').clone(true).appendTo( '#example thead' );
-    var table = $('#example').DataTable({
-        processing: true,
-        lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'Todos']],
-              ajax: {
-                url: '/SCL/planta/dados.php',
-                dataSrc: 'data'
-                },
-                orderCellsTop: true,
-                fixedHeader: true,
-                columnDefs: [ {
-                    "targets": 0,
-                    "data": null,
-                    "defaultContent": "<a href='#' class='myButton'>+</a>"
-                },     
-                {
-                    "targets": 5,
-                    "data": "ativo1",
-                    "render": function ( data, type, row, meta ) {
-                    if (data == "S")
-                        {return 'Sim';}
-                    else
-                        { return 'Não';}
-                    }
-                },{
-                    "targets": 6,
-                    "data": "ativo2",
-                    "render": function ( data, type, row, meta ) {
-                    if (data == "S")
-                        {return 'Sim';}
-                    else
-                        { return 'Não';}
-                    }
-                }, ],
-                "language": {
-                    sEmptyTable: "Nenhum registro encontrado",
-                    sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                    sInfoEmpty: "Mostrando 0 até 0 de 0 registros",
-                    sInfoFiltered: "(Filtrados de _MAX_ registros)",
-                    sInfoPostFix: "",
-                    sInfoThousands: ".",
-                    sLengthMenu: "_MENU_ resultados por página",
-                    sLoadingRecords: "Carregando...",
-                    sProcessing: "Processando...",
-                    sZeroRecords: "Nenhum registro encontrado",
-                    sSearch: "Pesquisar",
-                    oPaginate: {
-                        sNext: "Próximo",
-                        sPrevious: "Anterior",
-                        sFirst: "Primeiro",
-                        sLast: "Último"
-                    },
-                    oAria: {
-                        sSortAscending: ": Ordenar colunas de forma ascendente",
-                        sSortDescending: ": Ordenar colunas de forma descendente"
-                    }
-                },
-    });
-
-    
-    $('#example thead tr:eq(1) th').each( function (i) {
-        var title = $(this).text();
-        $(this).html( '<input type="text" placeholder="Pesquisar '+title+'" />' );
- 
-        $( 'input', this ).on( 'keyup change', function () {
-            if ( table.column(i).search() !== this.value ) {
-                table
-                    .column(i)
-                    .search( this.value )
-                    .draw();
-            }
-        } );
-    } );
-    $('input').eq(1).css("width","3rem");
-    $('input').eq(3).css("width","3rem");
-    $('input').eq(6).css("width","4rem");
-    $('input').eq(7).css("width","4rem");
-    $('input').eq(8).css("width","4rem");
-    $('input').eq(9).css("width","4rem");
-    $('input').eq(10).css("width","4rem");
-
-    $('#example tbody').on( 'click', 'a', function () {
-        var data = table.row( $(this).parents('tr') ).data();
-        window.location.href = "link.php?id=" + data[0];
-    } );
-
-} );
-
-</script>
+<script src="/SCL/js/consulta.js"></script>
 </body>
 </html>
