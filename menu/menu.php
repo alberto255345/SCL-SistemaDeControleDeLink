@@ -3,13 +3,13 @@
     
         <li>
             <fig>
-            <div onclick="sair('/SCL/')" class="zonainicio"><i class="fa fa-tv"></i>Início<i class="fa fa-chevron-down"></i></div>
+            <div onclick="sair('/SCL/')" class="zonainicio"><i class="fas fa-home"></i>Início</div>
             </fig>
             <div class="listinha"></div>
         </li>
         <li>
             <fig>
-            <div class="link"><i class="fa fa-laptop"></i><span id="avatarid"><img src="/SCL/assets/img/<?PHP echo $_SESSION['avatar'];?>" alt="Avatar" class="avatar"> &nbsp;<?PHP echo $_SESSION['nome_1'];?><span><i class="fa fa-chevron-down"></i></div>
+            <div class="link"></i><span id="avatarid"><img src="/SCL/assets/img/<?PHP echo $_SESSION['avatar'];?>" alt="Avatar" class="avatar"> &nbsp;<?PHP echo $_SESSION['nome_1'];?><span><i class="fa fa-chevron-down"></i></div>
             <ul class="submenu">
                 <li><a href="/SCL/conf/">Configurações</a></li>
                 <?PHP 
@@ -24,7 +24,7 @@
         </li>
         <li>
             <fig>
-            <div class="link"><i class="fa fa-tv"></i>Gráficos<i class="fa fa-chevron-down"></i></div>
+            <div class="link"><i class="fas fa-chart-line"></i>Gráficos<i class="fa fa-chevron-down"></i></div>
             <ul class="submenu">
                 <li><a href="/SCL/grafico/1.php">Gráfico 1</a></li>
             </ul>
@@ -49,7 +49,7 @@
         ?>
         <li>
             <fig>
-            <div onclick="sair('http://10.5.90.139:3000/')" class="zonainicio"><i class="fa fa-tv"></i>Link Grafana<i class="fa fa-chevron-down"></i></div>
+            <div onclick="sair('http://10.5.90.139:3000/')" class="zonainicio"><i class="fab fa-elementor"></i>Link Grafana</div>
             </fig>
             <div class="listinha"></div>
         </li>

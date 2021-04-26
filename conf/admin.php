@@ -186,6 +186,7 @@ while ($row = $stmt3->fetch()) {
 <script src='/SCL/dist/js/bootstrap.bundle.min.js'></script>
 <script src="/SCL/js/coreMenu.js"></script>
 <script src="/SCL/js/core3.js"></script>
+<script src="/SCL/js/geral.js"></script>
 
 <script>
 var coll = document.getElementsByClassName("collapsible");

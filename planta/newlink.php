@@ -144,9 +144,10 @@ include("../menu/menu.php");
 <script src='/SCL/dist/js/bootstrap.bundle.min.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="/SCL/js/formToJson.js"></script>
-<script src="/SCL/js/core3.js"></script>
 <script src="/SCL/js/core2.js"></script>
+<script src="/SCL/js/core3.js"></script>
 <script src="/SCL/js/coreMenu.js"></script>
+<script src="/SCL/js/geral.js"></script>
 <script>
 
 $("#salvarvalores").click(function() {

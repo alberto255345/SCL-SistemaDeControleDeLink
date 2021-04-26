@@ -93,12 +93,15 @@ include("../../menu/menu.php");
 
 <script src='/SCL/dist/js/jquery-3.5.1.js'></script>
 <script src='/SCL/dist/js/bootstrap.bundle.min.js'></script>
-<script src="/SCL/js/coreMenu.js"></script>
-<script src="/SCL/js/core3.js"></script>
 
 <script src="/SCL/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js"></script>
 <script src="/SCL/js/jquery-ui.js"></script>
+
+<script src="/SCL/js/coreMenu.js"></script>
+<script src="/SCL/js/core3.js"></script>
+<script src="/SCL/js/geral.js"></script>
+
 <script>
 
 

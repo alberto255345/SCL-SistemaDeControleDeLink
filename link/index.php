@@ -123,11 +123,13 @@ include("../menu/menu.php");
 </div>
 <script src='/SCL/dist/js/jquery-3.5.1.js'></script>
 <script src='/SCL/dist/js/bootstrap.bundle.min.js'></script>
-<script src="/SCL/js/coreMenu.js"></script>
-<script src="/SCL/js/core3.js"></script>
 <script src="/SCL/js/jquery.dataTables.min.js"></script>
 <script src="/SCL/js/jquery-ui.js"></script>
+<script src="/SCL/js/coreMenu.js"></script>
+<script src="/SCL/js/core3.js"></script>
+<script src="/SCL/js/geral.js"></script>
 <script>
+$("#separa").css('overflow','scroll');
 $(document).ready(function() {
     $('#example').DataTable({
         processing: true,

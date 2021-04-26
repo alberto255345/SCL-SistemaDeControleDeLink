@@ -23,6 +23,15 @@ if($_SESSION['admLink'] == 1 or $_SESSION['tipo'] == 'Admin'){
         $query = "INSERT INTO unidade_hapvida ($keysvalor) VALUES($valorarray)";
         $inserir = $connect->prepare($query);
         $inserir->execute();
+    }elseif($_POST['modo'] == "atualizar"){
+        $obj = json_decode($_POST['data'], true);
+        $idunidade = $_POST['id'];
+        $keysvalor = implode(',', array_keys($obj));
+        $valorarray = implode(',', array_map('aspas',$obj));
+        $query = "UPDATE `inventario`.`unidade_hapvida` SET  WHERE  `ID`=:idunidade;";
+        $inserir = $connect->prepare($query);
+        $inserir->bindParam(':idunidade', $idunidade, PDO::PARAM_INT);
+        $inserir->execute();
     }
 }
 $sql = "Select u.avatar, u.nome, u.setor, u.telefone, u.email, u.edicao, l.data, u.hash from user as u left join last_login as l on u.cod = l.cod_user where u.cod = '" . $_SESSION['usuario_log'] . "';";
@@ -31,7 +40,7 @@ $stmt2->execute();
 $dado = $stmt2->fetch();
 
 if(!empty($_GET['id']) and isset($_GET['id'])){
-$saidaID = "SELECT li.*, un.unidade, un.UF, un.cidade, un.endereco, un.N, un.complemento, un.bairro, un.CEP, un.ativo AS 'unidadeativa' FROM link_hapvida AS li LEFT JOIN unidade_hapvida AS un ON li.ID_unidade = un.ID WHERE li.ID = " . $_GET['id'] . ";";
+$saidaID = "SELECT * FROM unidade_hapvida WHERE ID = " . $_GET['id'] . ";";
 $linksaindo = $connect->prepare($saidaID);
 $linksaindo->execute();
 $dadolink = $linksaindo->fetch(PDO::FETCH_OBJ);
@@ -117,8 +126,8 @@ include("../menu/menu.php");
       <div class="input-field d-inline-flex">
                 <select name="ativo" id="idativo">
                     <option value="" disabled selected>Escolha a opção</option>
-                    <option value="S" <?PHP echo ($dadolink->unidadeativa == "S") ? "selected" : ""  ?> >SIM</option>
-                    <option value="N" <?PHP echo ($dadolink->unidadeativa == "N") ? "selected" : ""  ?> >NÃO</option>
+                    <option value="S" <?PHP echo ($dadolink->ativo == "S") ? "selected" : ""  ?> >SIM</option>
+                    <option value="N" <?PHP echo ($dadolink->ativo == "N") ? "selected" : ""  ?> >NÃO</option>
                 </select>
             <label>ATIVO?</label>
       </div>
@@ -147,13 +156,37 @@ include("../menu/menu.php");
 <script src="/SCL/js/core3.js"></script>
 <script src="/SCL/js/core2.js"></script>
 <script src="/SCL/js/coreMenu.js"></script>
+<script src="/SCL/js/geral.js"></script>
 <script>
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return typeof sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+    return false;
+};
+
 
 $("#salvarvalores").click(function() {
 // alert(JSON.stringify($("form").formToJson()));
+if(window.location.href.indexOf("?id=") <= -1){
 alert("Unidade Criada");
 $.post( "newunidade.php", { data: JSON.stringify($("form").formToJson()), modo: "inserir" } );
 $(':input').val("");
+}else{
+alert("Unidade Atualizada");
+$.post( "newunidade2.php", { data: JSON.stringify($("form").formToJson()), modo: "atualizar", id: getUrlParameter('id') } );
+$(':input').val("");
+}
 
 });
 

@@ -146,4 +146,22 @@ $(document).ready(function() {
         window.location.href = "link.php?id=" + data[0];
     } );
 
+
+$("#limparid").click(function() {
+    var table = $('#example').DataTable();
+    $('input').val("");
+
+    table
+        .search('')
+        .columns().search('')
+        .draw();
+
+    $("#example thead tr:eq(1) th").each( function () {
+        table.column($(this).index()).search("").draw();    
+    } );
+
+});
+
+
+
 } );

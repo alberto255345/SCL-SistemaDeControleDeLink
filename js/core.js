@@ -206,8 +206,9 @@ $(document).ready(function() {
 
 
     $( "#bt34" ).click(function() {
-        $('.heidi').animate({  height: "15%"}, {  duration: "slow"});
+        // $('.heidi').animate({  height: "15%"}, {  duration: "slow"});
         $('#container2').animate({  height: "toggle",  opacity: "toggle"}, {  duration: "slow"});
+        $('#plantaoid').animate({  height: "toggle",  opacity: "toggle"}, {  duration: "slow"});
 
         $('#container1').animate({  height: "toggle",  opacity: "toggle"}, {  duration: "slow"});
 

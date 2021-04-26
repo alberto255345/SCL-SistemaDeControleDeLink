@@ -35,7 +35,7 @@ include("../linkgeral.php");
 include("../menu/menu.php");
 ?>
 <div id="separa" style="align-items: center; margin: 5px; border-radius: 5px;">
-<div style="text-align: center;">
+<div id="test1" style="text-align: center;">
 <h4>Cadastro de OS</h4>
 <form id="form1">
     <table>
@@ -334,5 +334,6 @@ include("../menu/menu.php");
 <script src="/SCL/js/core2.js"></script>
 <script src="/SCL/js/coreMenu.js"></script>
 <script src="/SCL/js/core3.js"></script>
+<script src="/SCL/js/geral.js"></script>
 </body>
 </html>

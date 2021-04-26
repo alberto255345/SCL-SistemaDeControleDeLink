@@ -96,6 +96,7 @@ include("../menu/menu.php");
 <script src='/SCL/dist/js/bootstrap.bundle.min.js'></script>
 <script src="/SCL/js/coreMenu.js"></script>
 <script src="/SCL/js/core3.js"></script>
+<script src="/SCL/js/geral.js"></script>
 <script src="/SCL/dist/js/jquery.maskedinput.min.js"></script>
 <script type="application/javascript">
             function destino(item) {

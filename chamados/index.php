@@ -20,7 +20,6 @@ include("../linkgeral.php");
 
     <link rel="stylesheet" href="/SCL/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="/SCL/css/jquery-ui.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
 </head>
 <body>
 <div>
@@ -40,7 +39,7 @@ include("../menu/menu.php");
 <?PHP
     if($_SESSION['admLink'] == 1 or $_SESSION['tipo'] == 'Admin'){
         echo '<a href="/SCL/planta/newunidade.php" class="myButton">Criar Unidade</a>&nbsp;';
-        echo '<a href="/SCL/planta/newlink.php" class="myButton">Criar Link</a>';
+        echo '<a href="#" class="myButton">Criar Link</a>';
     }
 ?>
     <a id="donwload" href="#" class="myButton">Download Base</a>
@@ -59,7 +58,7 @@ include("../menu/menu.php");
     </div>
     <span id="filtrarid"></span>
 </div>
-<div class="plenanmentp"></div>
+
 <table id="example" class="display" style="width:100%">
         <thead>
             <tr>
@@ -82,8 +81,6 @@ include("../menu/menu.php");
                 <th>Unidade Concentradora</th>
             </tr>
         </thead>
-        <tbody>
-        </tbody>
         <tfoot>
             <tr>
                 <th>ID</th>
@@ -113,51 +110,20 @@ include("../menu/menu.php");
 
 <script src='/SCL/dist/js/jquery-3.5.1.js'></script>
 <script src='/SCL/dist/js/bootstrap.bundle.min.js'></script>
-
 <script src="/SCL/js/jquery.dataTables.min.js"></script>
 <script src="/SCL/js/jquery-ui.js"></script>
-<script src="https://cdn.datatables.net/plug-ins/1.10.24/filtering/type-based/accent-neutralise.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
 <script src="/SCL/js/consulta.js"></script>
+
 <script src="/SCL/js/coreMenu.js"></script>
 <script src="/SCL/js/core3.js"></script>
 <script src="/SCL/js/geral.js"></script>
+
 <script>
-    $("#separa").css('overflow','scroll');
+$("#limparid").click(function() {
 
-     $(function() {
-        $.contextMenu({
-            selector: '#example tbody tr', 
-            callback: function(key, options) {
-                var m = "clicked: " + key;
-                window.console && console.log(m);
-                var saida = $(this).html().split('</td>');
-                if (key == "op1") {
-                    alert(saida[4].substr(4));
-                }else if(key == "op2"){
-                    alert(saida[10].substr(4));
-                }else if(key == "op3"){
-                    alert(saida[11].substr(4));
-                }else if(key == "op4"){
-                    alert(saida[13].substr(4));  
-                }
-                alert("Copiado");
-            },
-            items: {
-                "valor": {name: "Copiar para o ClipBoard", icon: "fa-align-center", disabled: true},
-                "sep1": "----Copiar para o ClipBoard-----",
-                "op1": {name: "Endereço", icon: "fa-address-card"},
-                "op2": {name: "Circuito", icon: "fa-key"},
-                "op3": {name: "IP Link", icon:  "fa-network-wired"},
-                "op4": {name: "IP Firewall", icon: "fa-network-wired"}
-            }
-        });
+$('input').val("");
 
-        // $('.context-menu-one').on('click', function(e){
-        //     console.log('clicked', this);
-        // })    
-    });
+});
 </script>
 </body>
 </html>
