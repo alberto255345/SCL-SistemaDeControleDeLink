@@ -24,11 +24,6 @@ include("../linkgeral.php");
 <body>
 <div>
     <div class="pamens">
-        <div class="containerMenu" onclick="myFunctionMenu(this)">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-        </div>
     </div>
     <div class="pamens2"></div>
 </div>
@@ -191,6 +186,7 @@ while ($row = $stmt3->fetch()) {
 <script src='/SCL/dist/js/bootstrap.bundle.min.js'></script>
 <script src="/SCL/js/coreMenu.js"></script>
 <script src="/SCL/js/core3.js"></script>
+<script src="/SCL/js/geral.js"></script>
 
 <script>
 var coll = document.getElementsByClassName("collapsible");

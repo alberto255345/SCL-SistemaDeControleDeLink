@@ -67,9 +67,9 @@
     background-image: linear-gradient(#F3F4F8, white);
         /* height: 100%; */
         font-family: Verdana, Geneva, sans-serif;
-        padding: 5 10 0 10;
-        overflow: scroll;
-        width: 86rem;
+        padding: 5px 10px 0px 10px;
+        /* overflow: scroll; */
+        /* width: 86rem; */
   }
 
   @-webkit-keyframes slideInLeft {

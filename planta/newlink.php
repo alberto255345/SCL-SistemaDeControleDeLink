@@ -47,11 +47,6 @@ include("../linkgeral.php");
 <body>
 <div>
     <div class="pamens">
-    <div class="containerMenu" onclick="myFunctionMenu(this)">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-        </div>
     </div>
     <div class="pamens2"></div>
 </div>
@@ -149,9 +144,10 @@ include("../menu/menu.php");
 <script src='/SCL/dist/js/bootstrap.bundle.min.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="/SCL/js/formToJson.js"></script>
-<script src="/SCL/js/core3.js"></script>
 <script src="/SCL/js/core2.js"></script>
+<script src="/SCL/js/core3.js"></script>
 <script src="/SCL/js/coreMenu.js"></script>
+<script src="/SCL/js/geral.js"></script>
 <script>
 
 $("#salvarvalores").click(function() {

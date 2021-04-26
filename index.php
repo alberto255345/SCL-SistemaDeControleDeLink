@@ -21,9 +21,35 @@ if(isset($_SESSION['usuario_log'])){
 
   <body> 
   <div class="heidi"></div>
+  <div id="plantaoid" class="container gssss colorr1" style="text-align: -webkit-center;">
+    <br>
+    <a href="tel:085981877040" style="line-height: 0px;font-size: 13px;text-align: center;width: 80%;padding-top: 10px;"
+      class="card">
+      <p>Número Plantão Telecom</p>
+      <p>(85)98187-7040</p>
+    </a>
+    <br>
+    <a href="https://api.whatsapp.com/send?1=pt_br&amp;phone=05585988981321" style="line-height: 0px;font-size: 13px;text-align: center;width: 80%;padding-top: 10px; display: none;" class="card">
+      <p>Whatsapp Plantonista</p>
+      <p>Daniel Wagner</p>
+      <p>(85)98898-1321</p>
+    </a>
+    <a href="https://api.whatsapp.com/send?1=pt_br&amp;phone=05585999807075" style="line-height: 0px;font-size: 13px;text-align: center;width: 80%;padding-top: 10px; display: none;" class="card">
+      <p>Whatsapp Plantonista</p>
+      <p>Alberto Vitoriano</p>
+      <p>(85)99980-7075</p>
+    </a>
+    <a href="https://api.whatsapp.com/send?1=pt_br&amp;phone=05585988308750" style="line-height: 0px;font-size: 13px;text-align: center;width: 80%;padding-top: 10px; display: block;" class="card">
+      <p>Whatsapp Plantonista</p>
+      <p>André Meireles</p>
+      <p>(85)98830-8750</p>
+    </a>
+    <br>
+  </div>
+  <br>
   <div id="container1" class="container gssss colorr1">
                 <div class="configdiv valro">
-                    <div>SGT</div>
+                    <div>SCL</div>
                 </div>
                 <div class="configdiv gfhs">
                         <form>
