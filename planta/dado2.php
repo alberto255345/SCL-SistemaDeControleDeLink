@@ -28,15 +28,16 @@ li.firewall,
 li.ip_firewall,
 li.interface,
 li.ip_operadora,
-li.id_concentrador,
-CONCAT(un.endereco2," ",un.N2,",",un.bairro2," ",un.CEP2," ",un.apelido_u) AS anexo
+li.id_concentrador
 from link_hapvida AS li LEFT JOIN unidade_hapvida AS un ON li.ID_unidade = un.ID
-where un.visivel_u = 1 and li.visivel_l = 1;
-');
-$sql->execute();
+where li.id = :name
+;');
+
+$sql->execute([ 'name' => $_POST['id'] ]);
+
+$dado = $_POST['saida'];
 while ($row = $sql->fetch()) {
-    $return_arr['data'][] = $row;
+    echo $row[$dado];
 } 
 
-echo json_encode($return_arr);
 ?>

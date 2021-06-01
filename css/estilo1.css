@@ -122,6 +122,11 @@ tr{
     margin-bottom: 14px !important;
 }
 
+.hosttamanho{
+  width: 22rem !important;
+}
+
+
 .modal {
     position: fixed;
     top: 0;

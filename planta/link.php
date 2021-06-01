@@ -16,7 +16,7 @@ $stmt2->execute();
 $dado = $stmt2->fetch();
 
 if(!empty($_GET['id']) and isset($_GET['id'])){
-$saidaID = "SELECT li.*, un.unidade, un.UF, un.cidade, un.endereco, un.N, un.complemento, un.bairro, un.CEP, un.ativo AS 'unidadeativa' FROM link_hapvida AS li LEFT JOIN unidade_hapvida AS un ON li.ID_unidade = un.ID WHERE li.ID = " . $_GET['id'] . ";";
+$saidaID = "SELECT li.*, un.apelido_u, un.unidade, un.UF, un.cidade, un.endereco, un.N, un.complemento, un.bairro, un.CEP, un.endereco2, un.N2, un.complemento2, un.bairro2, un.CEP2, un.ativo AS 'unidadeativa', un.descricao_u FROM link_hapvida AS li LEFT JOIN unidade_hapvida AS un ON li.ID_unidade = un.ID WHERE li.ID = " . $_GET['id'] . ";";
 $linksaindo = $connect->prepare($saidaID);
 $linksaindo->execute();
 $dadolink = $linksaindo->fetch(PDO::FETCH_OBJ);
@@ -41,7 +41,7 @@ include("../menu/menu.php");
 ?>
 
 <div id="separa" style="align-items: center; margin: 5px; border-radius: 5px;">
-<div id="test1" style="text-align: center;">
+<div id="test1" style="text-align: center; height: 43vh;">
 
 
 <div id="accordion">
@@ -63,7 +63,12 @@ include("../menu/menu.php");
         <input style="width: 330px;" name="unidade" id="UNIDADE" type="text" value="<?PHP echo $dadolink->unidade; ?>" >
         <label for="UNIDADE">Unidade</label>
       </div>
-        
+      
+      <div class="input-field inline">
+        <input style="width: 330px;" name="apelido_u" id="APELIDO_U" type="text" value="<?PHP echo $dadolink->apelido_u; ?>" >
+        <label for="APELIDO_U">Apelido</label>
+      </div>
+
       <div class="input-field inline">
         <input style="width: 30px;" name="uf" id="UF" type="text" value="<?PHP echo $dadolink->UF; ?>" >
         <label style="width: 30px;" for="UF">UF</label>
@@ -102,6 +107,37 @@ include("../menu/menu.php");
         <input name="cep" id="CEP" type="text" value="<?PHP echo $dadolink->CEP; ?>" >
         <label for="CEP">CEP</label>
       </div>
+
+
+      <?PHP
+      if($dadolink->endereco2 <> null){
+      echo '<br>
+      <div class="input-field inline">
+        <input style="width: 330px;" name="endereco" id="ENDERECO2" type="text" value="' . $dadolink->endereco2 . '" >
+        <label style="width: 330px;" for="ENDERECO2">Endereço 2</label>
+      </div>
+
+      <div class="input-field inline">
+        <input style="width: 100px;" name="N2" id="N2" type="text" value="' . $dadolink->N2 . '" >
+        <label style="width: 100px;" for="N2">Número 2</label>
+      </div>
+
+      <div class="input-field inline">
+        <input name="complemento2" id="COMPLEMENTO2" type="text" value="' . $dadolink->complemento2 . '" >
+        <label for="COMPLEMENTO2">Complemento 2</label>
+      </div>
+
+      <div class="input-field inline">
+        <input name="bairro2" id="BAIRRO2" type="text" value="' . $dadolink->bairro2 . '" >
+        <label for="BAIRRO2">Bairro 2</label>
+      </div>
+
+      <div class="input-field inline">
+        <input name="cep2" id="CEP2" type="text" value="' . $dadolink->CEP2 . '" >
+        <label for="CEP2">CEP 2</label>
+      </div>';
+      }
+      ?>
 
       <div class="input-field inline">
                 <select name="unidadeativa">
@@ -142,6 +178,11 @@ include("../menu/menu.php");
 
         ?>
 
+<div class="input-field">
+                <input name="descricao_u" id="DESCRICAO_U" type="text" value="<?PHP echo $dadolink->descricao_u; ?>" >
+                <label for="DESCRICAO_U">Descrição</label>
+       </div>
+
       </div>
     </div>
   </div>
@@ -151,7 +192,7 @@ include("../menu/menu.php");
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Link
+          Link <?PHP echo $dadolink->operadora . '_' . $dadolink->tipo;  ?>
         </button>
       </h5>
     </div>
@@ -162,6 +203,11 @@ include("../menu/menu.php");
       <div class="input-field inline">
                 <input name="operadora" id="OPERADORA" type="text" value="<?PHP echo $dadolink->operadora; ?>" >
                 <label for="OPERADORA">OPERADORA</label>
+        </div>
+
+        <div class="input-field inline">
+                <input name="apelido" id="APELIDO" type="text" value="<?PHP echo $dadolink->apelido; ?>" >
+                <label for="APELIDO">APELIDO</label>
         </div>
     
         <div class="input-field inline">
@@ -248,7 +294,7 @@ include("../menu/menu.php");
         
         if(!empty($_GET['id']) and isset($_GET['id'])){
             
-            $saidaID2 = "SELECT sc.hostid FROM inventario.link_hapvida AS li LEFT JOIN inventario.linkzabbix_scl AS sc ON li.ID = sc.ID WHERE sc.hostid IS NOT NULL AND li.ID = " . $_GET['id'] . ";";
+            $saidaID2 = "SELECT sc.hostid, sc.nome FROM inventario.link_hapvida AS li LEFT JOIN inventario.linkzabbix_scl AS sc ON li.ID = sc.ID WHERE sc.hostid IS NOT NULL AND li.ID = " . $_GET['id'] . ";";
             $linksaindo2 = $connect->prepare($saidaID2);
             $linksaindo2->execute();
             $val = $linksaindo2->rowCount();
@@ -256,6 +302,7 @@ include("../menu/menu.php");
 
                     while ($linha = $linksaindo2->fetch(PDO::FETCH_ASSOC)) {
                         echo '<a class="waves-effect waves-light btn" href="/zabbix/zabbix.php?action=latest.view&filter_hostids%5B%5D=' . $linha["hostid"] . '&filter_set=1" class="button">Link Zabbix ' . $linha["hostid"] . '</a>&nbsp;';
+                        echo '<div class="input-field inline"><input class="hosttamanho" name="host" id="HOST" type="text" value="' .  $linha["nome"] . '" ><label for="HOST">HOST</label></div>';
                     }
 
                 }
@@ -265,8 +312,8 @@ include("../menu/menu.php");
         ?>
 
        <div class="input-field">
-                <input name="descricao" id="DESCRICAO" type="text" value="<?PHP echo $dadolink->descricao; ?>" >
-                <label for="DESCRICAO">Descrição</label>
+                <input name="descricao_l" id="DESCRICAO_L" type="text" value="<?PHP echo $dadolink->descricao_l; ?>" >
+                <label for="DESCRICAO_L">Descrição</label>
        </div>
 
        </form>

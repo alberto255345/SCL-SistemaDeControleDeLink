@@ -46,68 +46,73 @@ include("../menu/menu.php");
     <a id="donwload" href="#" class="myButton">Download Base</a>
     <a id="limparid" href="#" class="myButton">Limpar Filtro</a>
 </div>
-
+<br>
 <div id="mobileFilter">
     <select id="saidaselect" class="form-control" aria-label="Default select">
-    <option selected disabled>Selecione Opção</option>
+        <option selected disabled>Selecione Opção</option>
     </select>
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Digite..." aria-label="Pesquisar" aria-describedby="basic-addon2">
+        <input type="text" id="textfilter" class="form-control" placeholder="Digite..." aria-label="Pesquisar"
+            aria-describedby="basic-addon2">
         <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Filtrar</button>
+            <button class="btn btn-outline-secondary" id="buttonmobilefilter" type="button">Filtrar</button>
         </div>
     </div>
     <span id="filtrarid"></span>
 </div>
-<div class="plenanmentp"></div>
+
 <table id="example" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Unidade</th>
-                <th>UF</th>
-                <th>Cidade</th>
-                <th>Endereço</th>
-                <th class="titulo1">Unidade Ativa</th>
-                <th class="titulo1">Link Ativo</th>
-                <th>Tipo</th>
-                <th>Operadora</th>
-                <th>Vel. (MB)</th>
-                <th>Circuito</th>
-                <th>IP Link</th>
-                <th>FortiGate</th>
-                <th>IP FortiGate</th>
-                <th class="titulo1">Interface FortiGate</th>
-                <th>IP Operadora</th>
-                <th>Unidade Concentradora</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>ID</th>
-                <th>Unidade</th>
-                <th>UF</th>
-                <th>Cidade</th>
-                <th>Endereço</th>
-                <th>Unidade Ativa</th>
-                <th>Link Ativo</th>
-                <th>Tipo</th>
-                <th>Operadora</th>
-                <th>Vel. (MB)</th>
-                <th>Circuito</th>
-                <th>IP Link</th>
-                <th>FortiGate</th>
-                <th>IP FortiGate</th>
-                <th>Interface FortiGate</th>
-                <th>IP Operadora</th>
-                <th>Unidade Concentradora</th>
-            </tr>
-        </tfoot>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Unidade</th>
+            <th>UF</th>
+            <th>Cidade</th>
+            <th>Endereço</th>
+            <th class="titulo1">Unidade Ativa</th>
+            <th class="titulo1">Link Ativo</th>
+            <th>Tipo</th>
+            <th>Operadora</th>
+            <th>Vel. (MB)</th>
+            <th>Circuito</th>
+            <th>IP Link</th>
+            <th>FortiGate</th>
+            <th>IP FortiGate</th>
+            <th class="titulo1">Interface FortiGate</th>
+            <th>IP Operadora</th>
+            <th>Unidade Concentradora</th>
+            <th>anexo</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>ID</th>
+            <th>Unidade</th>
+            <th>UF</th>
+            <th>Cidade</th>
+            <th>Endereço</th>
+            <th>Unidade Ativa</th>
+            <th>Link Ativo</th>
+            <th>Tipo</th>
+            <th>Operadora</th>
+            <th>Vel. (MB)</th>
+            <th>Circuito</th>
+            <th>IP Link</th>
+            <th>FortiGate</th>
+            <th>IP FortiGate</th>
+            <th>Interface FortiGate</th>
+            <th>IP Operadora</th>
+            <th>Unidade Concentradora</th>
+            <th>anexo</th>
+        </tr>
+    </tfoot>
 
-    </table>
+</table>
 
+</div>
+<div id="inpudt"></div>
 </div>
 </div>
 
@@ -132,15 +137,62 @@ include("../menu/menu.php");
             callback: function(key, options) {
                 var m = "clicked: " + key;
                 window.console && console.log(m);
+                var table = $('#example').DataTable();
                 var saida = $(this).html().split('</td>');
+                var data1 = table.row( $(this) ).data();
+
                 if (key == "op1") {
-                    alert(saida[4].substr(4));
+                    // alert(saida[4].substr(4));
+
+                    if(window.matchMedia("(max-width: 767px)").matches){
+                        // Mobile
+                        $.post("dado2.php", {saida: 'endereco', id: data1[0]}, function(data){
+                            copiarclipboard(data);
+                        });
+                    } else{
+                        // Normal
+                        copiarclipboard(saida[4].substr(4));
+                    }
+
                 }else if(key == "op2"){
-                    alert(saida[10].substr(4));
+                    // alert(saida[10].substr(4));
+                    
+                    if(window.matchMedia("(max-width: 767px)").matches){
+                        // Mobile
+                        $.post("dado2.php", {saida: 'circuito', id: data1[0]}, function(data){
+                            copiarclipboard(data);
+                        });
+                    } else{
+                        // Normal
+                        copiarclipboard(saida[10].substr(4));
+                    }
+
                 }else if(key == "op3"){
-                    alert(saida[11].substr(4));
+                    // alert(saida[11].substr(4));
+                    
+                    if(window.matchMedia("(max-width: 767px)").matches){
+                        // Mobile
+                        $.post("dado2.php", {saida: 'ip_link', id: data1[0]}, function(data){
+                            copiarclipboard(data);
+                        });
+                    } else{
+                        // Normal
+                        copiarclipboard(saida[11].substr(4));
+                    }
+
                 }else if(key == "op4"){
-                    alert(saida[13].substr(4));  
+                    // alert(saida[13].substr(4));
+                    
+                    if(window.matchMedia("(max-width: 767px)").matches){
+                        // Mobile
+                        $.post("dado2.php", {saida: 'ip_firewall', id: data1[0]}, function(data){
+                            copiarclipboard(data);
+                        });
+                    } else{
+                        // Normal
+                        copiarclipboard(saida[13].substr(4));
+                    }
+
                 }
                 alert("Copiado");
             },
@@ -154,9 +206,14 @@ include("../menu/menu.php");
             }
         });
 
-        // $('.context-menu-one').on('click', function(e){
-        //     console.log('clicked', this);
-        // })    
+        function copiarclipboard(valor) {
+            var ghg = $('#inpudt').html('<input type="text" value="' + valor + '">');
+            var sds = ghg.children( "input" );
+            sds.select();
+            document.execCommand("copy");
+            $('#inpudt').html('');
+        };
+
     });
 </script>
 </body>
