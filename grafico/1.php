@@ -126,11 +126,11 @@ include($path2);
     <div id="pames">
             <span>Carregando . . .</span>
     </div>
-    <script src="../dist/js/jquery-3.5.1.js"></script>
+    <script src="/SCL//dist/js/jquery-3.5.1.js"></script>
     <script src="/SCL/assets/js/core/popper.min.js"></script>
     <script type="text/javascript" src="/SCL/js/bootstrap-multiselect.js"></script>
-    <script src="../dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/SCL/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
-    <script src="../js/coreGra.js"></script>
+    <script src="/SCL/js/coreGra.js"></script>
 </body>
 </html>

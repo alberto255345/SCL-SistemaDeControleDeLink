@@ -18,7 +18,7 @@ include("./menu/menu.php");
 ?>
 
 <div id="separa" style="align-items: center; margin: 5px; border-radius: 5px;">
-<div style="text-align: center; width: 100%;">
+<div id="test1 style="text-align: center; width: 100%;">
 
 <h3>Sistema de Controle de Links</h3>
 <?PHP 
@@ -47,7 +47,8 @@ if(isset($_SESSION['mensagem'])){
 
 <script src='/SCL/dist/js/jquery-3.5.1.js'></script>
 <script src='/SCL/dist/js/bootstrap.bundle.min.js'></script>
-<script src="./js/coreMenu.js"></script>
+<script src="/SCL/js/coreMenu.js"></script>
+<script src="/SCL/js/core3.js"></script>
 <script src="/SCL/js/geral.js"></script>
 <script>
 $('#accordion li').each( function () {
