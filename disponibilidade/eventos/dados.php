@@ -11,7 +11,7 @@ if($_SESSION['telecom'] != 1 and $_SESSION['tipo'] != 'Admin' or $_SESSION['admD
 $return_arr = array();
 
 $sql = $connect3->prepare('
-SELECT ID, ID as linkid, host, name, eventid,  FROM_UNIXTIME(fail,"%h:%i:%s %d/%m/%Y") as fail, r_eventid,  if( clear = 0, NULL, FROM_UNIXTIME(clear,"%h:%i:%s %d/%m/%Y")) as clear, round(time/60,0) as time, groupid  FROM log_falhas where clear IS not NULL AND NAME = "ICMP Ping Indisponível";
+SELECT ID, ID as linkid, host, name, eventid,  FROM_UNIXTIME(fail-32400,"%h:%i:%s %d/%m/%Y") as fail, r_eventid,  if( clear = 0, NULL, FROM_UNIXTIME(clear-32400,"%h:%i:%s %d/%m/%Y")) as clear, round(time/60,0) as time, groupid  FROM log_falhas where clear IS not NULL AND NAME = "ICMP Ping Indisponível";
 ');
 $sql->execute();
 while ($row = $sql->fetch()) {

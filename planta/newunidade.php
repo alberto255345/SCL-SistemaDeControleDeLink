@@ -20,17 +20,63 @@ if($_SESSION['admLink'] == 1 or $_SESSION['tipo'] == 'Admin'){
         $obj = json_decode($_POST['data'], true);
         $keysvalor = implode(',', array_keys($obj));
         $valorarray = implode(',', array_map('aspas',$obj));
-        $query = "INSERT INTO unidade_hapvida ($keysvalor) VALUES($valorarray)";
+        $user_l = "'" . $_SESSION['usuario_log'] . "'";
+        $query = "INSERT INTO unidade_hapvida ($keysvalor,user_u) VALUES($valorarray,$user_l)";
         $inserir = $connect->prepare($query);
         $inserir->execute();
-    }elseif($_POST['modo'] == "atualizar"){
+      }elseif($_POST['modo'] == "atualizar"){
         $obj = json_decode($_POST['data'], true);
-        $idunidade = $_POST['id'];
-        $keysvalor = implode(',', array_keys($obj));
-        $valorarray = implode(',', array_map('aspas',$obj));
-        $query = "UPDATE `inventario`.`unidade_hapvida` SET  WHERE  `ID`=:idunidade;";
-        $inserir = $connect->prepare($query);
+        $idunidade = $obj['id'];
+        $arr = '';
+        foreach ($obj as $key => $value) {
+          if($key != 'host'){
+            
+            if ($arr == '') {
+              if (empty($value)) {
+                $arr = $key . ' = NULL';
+              }else{
+                $arr = $key . ' = "' . $value . '"';
+              }
+            }else {
+              if (empty($value)) {
+                $arr = $arr . ' , ' . $key . ' = NULL';
+              }else{
+                $arr = $arr . ' , ' . $key . ' = "' . $value . '"';
+              }
+            }
+          }
+        }
+        
+        // echo 'saida:' . $arr;
+        
+        $query = "INSERT INTO inventario.unidade_hapvida_trash (user,ID,unidade,apelido_u,UF,cidade,endereco,N,complemento,bairro,CEP,endereco2,N2,bairro2,complemento2,CEP2,ativo,categoria,visivel_u,descricao_u)
+        SELECT '" . $_SESSION['usuario_log'] . "' as user,ID,unidade,apelido_u,UF,cidade,endereco,N,complemento,bairro,CEP,endereco2,N2,bairro2,complemento2,CEP2,ativo,categoria,visivel_u,descricao_u FROM inventario.unidade_hapvida WHERE ID =:idunidade;";
+        $query2 = "UPDATE `inventario`.`unidade_hapvida` SET $arr WHERE `ID`=:idunidade ;";
+        
+        $inserir2 = $connect->prepare($query);
+        $inserir = $connect->prepare($query2);
+        
+        $inserir2->bindParam(':idunidade', $idunidade, PDO::PARAM_INT);
         $inserir->bindParam(':idunidade', $idunidade, PDO::PARAM_INT);
+        
+        $inserir2->execute();
+        $inserir->execute();
+    }elseif($_POST['modo'] == "deletar"){
+        $obj = json_decode($_POST['data'], true);
+        $idunidade = $obj['id'];
+        $arr = '';
+        
+        // $query = "INSERT INTO inventario.link_hapvida_trash (user,ID,ID_unidade,operadora,apelido,tipo,velocidade,circuito,propria,ativo,SDWAN,ip_link,subnetwork,firewall,ip_firewall,interface,ip_operadora,id_concentrador,data_ativação,data_cancelamento,descricao_l,visivel_l)
+        // SELECT '" . $_SESSION['usuario_log'] . "' as user, ID,ID_unidade,operadora,apelido,tipo,velocidade,circuito,propria,ativo,SDWAN,ip_link,subnetwork,firewall,ip_firewall,interface,ip_operadora,id_concentrador,data_ativação,data_cancelamento,descricao_l,visivel_l FROM inventario.link_hapvida WHERE ID =:idunidade;";
+        $query2 = "UPDATE `inventario`.`unidade_hapvida` SET visivel_u = 0 WHERE `ID`=:idunidade ;";
+        
+        // $inserir2 = $connect->prepare($query);
+        $inserir = $connect->prepare($query2);
+        
+        // $inserir2->bindParam(':idunidade', $idunidade, PDO::PARAM_INT);
+        $inserir->bindParam(':idunidade', $idunidade, PDO::PARAM_INT);
+        
+        // $inserir2->execute();
         $inserir->execute();
     }
 }
@@ -87,7 +133,12 @@ include("../menu/menu.php");
         <input style="width: 330px;" name="unidade" id="idunidade" type="text" value="<?PHP echo $dadolink->unidade; ?>" >
         <label  >Unidade</label>
       </div>
-        
+
+      <div class="input-field inline">
+        <input style="width: 330px;" name="apelido_u" id="APELIDO_U" type="text" value="<?PHP echo $dadolink->apelido_u; ?>" >
+        <label for="APELIDO_U">Apelido</label>
+      </div>
+
       <div class="input-field d-inline-flex">
         <input style="width: 30px;" name="uf" id="iduf" type="text" value="<?PHP echo $dadolink->UF; ?>" >
         <label style="width: 30px;"  >UF</label>
@@ -123,6 +174,32 @@ include("../menu/menu.php");
         <label  >CEP</label>
       </div>
 
+      <br>
+      <div class="input-field inline">
+        <input style="width: 330px;" name="endereco2" id="ENDERECO2" type="text" value="<?PHP echo $dadolink->endereco2; ?>" >
+        <label style="width: 330px;" for="ENDERECO2">Endereço 2</label>
+      </div>
+
+      <div class="input-field inline">
+        <input style="width: 100px;" name="N2" id="N2" type="text" value="<?PHP echo $dadolink->endereco2; ?>" >
+        <label style="width: 100px;" for="N2">Número 2</label>
+      </div>
+
+      <div class="input-field inline">
+        <input name="complemento2" id="COMPLEMENTO2" type="text" value="<?PHP echo $dadolink->endereco2; ?>" >
+        <label for="COMPLEMENTO2">Complemento 2</label>
+      </div>
+
+      <div class="input-field inline">
+        <input name="bairro2" id="BAIRRO2" type="text" value="<?PHP echo $dadolink->endereco2; ?>" >
+        <label for="BAIRRO2">Bairro 2</label>
+      </div>
+
+      <div class="input-field inline">
+        <input name="cep2" id="CEP2" type="text" value="<?PHP echo $dadolink->endereco2; ?>" >
+        <label for="CEP2">CEP 2</label>
+      </div>
+
       <div class="input-field d-inline-flex">
                 <select name="ativo" id="idativo">
                     <option value="" disabled selected>Escolha a opção</option>
@@ -131,6 +208,25 @@ include("../menu/menu.php");
                 </select>
             <label>ATIVO?</label>
       </div>
+
+      <div class="input-field inline">
+                <select name="categoria">
+                    <option value="" disabled selected>Escolha a opção</option>
+                    <option value="hospital" <?PHP echo ($dadolink->categoria == "hospital") ? "selected" : ""  ?> >Hospital</option>
+                    <option value="vidaeimagem" <?PHP echo ($dadolink->categoria == "vidaeimagem") ? "selected" : ""  ?> >Vida & Imagem</option>
+                    <option value="hapclinica" <?PHP echo ($dadolink->categoria == "hapclinica") ? "selected" : ""  ?> >Hapclínica</option>
+                    <option value="prontoatendimento" <?PHP echo ($dadolink->categoria == "prontoatendimento") ? "selected" : ""  ?> >Pronto Atendimento</option>
+                    <option value="centrodedistribuicao" <?PHP echo ($dadolink->categoria == "centrodedistribuicao") ? "selected" : ""  ?> >Centro de Distribuição</option>
+                    <option value="medprev" <?PHP echo ($dadolink->categoria == "medprev") ? "selected" : ""  ?> >Medicina Preventiva</option>
+                    <option value="laboratorio" <?PHP echo ($dadolink->categoria == "laboratorio") ? "selected" : ""  ?> >Laboratório</option>
+                    <option value="administrativo" <?PHP echo ($dadolink->categoria == "administrativo") ? "selected" : ""  ?> >Administrativo</option>
+                    <option value="ambulatorio" <?PHP echo ($dadolink->categoria == "ambulatorio") ? "selected" : ""  ?> >Ambulátorio</option>
+                    <option value="outros" <?PHP echo ($dadolink->categoria == "outros") ? "selected" : ""  ?> >Outros</option>
+                </select>
+            <label>CATEGORIA</label>
+      </div>
+
+
       </form>
 
       </div>
@@ -175,18 +271,22 @@ var getUrlParameter = function getUrlParameter(sParam) {
     return false;
 };
 
+function replacer(key, value) {
+  if (value == "") {
+    return undefined;
+  } else if(value == "0000-00-00"){
+    return undefined;
+  }else{
+    return value;
+  }
+  
+}
 
 $("#salvarvalores").click(function() {
 // alert(JSON.stringify($("form").formToJson()));
-if(window.location.href.indexOf("?id=") <= -1){
 alert("Unidade Criada");
-$.post( "newunidade.php", { data: JSON.stringify($("form").formToJson()), modo: "inserir" } );
+$.post( "newunidade.php", { data: JSON.stringify($("form").formToJson(),replacer), modo: "inserir" } );
 $(':input').val("");
-}else{
-alert("Unidade Atualizada");
-$.post( "newunidade2.php", { data: JSON.stringify($("form").formToJson()), modo: "atualizar", id: getUrlParameter('id') } );
-$(':input').val("");
-}
 
 });
 

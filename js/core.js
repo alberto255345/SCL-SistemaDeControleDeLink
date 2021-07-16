@@ -222,7 +222,7 @@ $(document).ready(function() {
 
     });
 
-    $( ".form-group" ).keypress(function() {
+    $( ".form-group" ).keyup(function() {
     
         var progresso = 0;
 
