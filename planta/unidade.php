@@ -16,10 +16,15 @@ $stmt2->execute();
 $dado = $stmt2->fetch();
 
 if(!empty($_GET['id']) and isset($_GET['id'])){
-$saidaID = "SELECT un.apelido_u, un.ID, un.unidade, un.UF, un.cidade, un.endereco, un.N, un.complemento, un.bairro, un.CEP, un.ativo AS 'unidadeativa', un.descricao_u FROM unidade_hapvida AS un WHERE un.ID = " . $_GET['id'] . ";";
+$saidaID = "SELECT un.visivel_u, un.apelido_u, un.ID, un.unidade, un.UF, un.cidade, un.endereco, un.N, un.complemento, un.bairro, un.CEP, un.ativo AS 'unidadeativa', un.descricao_u, un.categoria FROM unidade_hapvida AS un WHERE un.ID = " . $_GET['id'] . ";";
 $linksaindo = $connect->prepare($saidaID);
 $linksaindo->execute();
 $dadolink = $linksaindo->fetch(PDO::FETCH_OBJ);
+
+if($dadolink->visivel_u == 0){
+  header('Location: /SCL/planta/');
+}
+
 }
 
 include("../linkgeral.php");
@@ -58,7 +63,9 @@ include("../menu/menu.php");
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body  <?PHP echo ($dadolink->unidadeativa == "S") ? "" : "cordesativado"  ?>" style="text-align: initial;">
-      
+      <form id="form1serialize" action="">
+      <input name="id" id="ID" type="hidden" value="<?PHP echo $dadolink->ID; ?>">
+
       <div class="input-field inline">
         <input style="width: 330px;" name="unidade" id="UNIDADE" type="text" value="<?PHP echo $dadolink->unidade; ?>" >
         <label for="UNIDADE">Unidade</label>
@@ -109,19 +116,36 @@ include("../menu/menu.php");
       </div>
 
       <div class="input-field inline">
-                <select name="unidadeativa">
+                <select name="ativo">
                     <option value="" disabled selected>Escolha a opção</option>
                     <option value="S" <?PHP echo ($dadolink->unidadeativa == "S") ? "selected" : ""  ?> >SIM</option>
                     <option value="N" <?PHP echo ($dadolink->unidadeativa == "N") ? "selected" : ""  ?> >NÃO</option>
                 </select>
             <label>ATIVO?</label>
       </div>
+
+      <div class="input-field inline">
+                <select name="categoria">
+                    <option value="" disabled selected>Escolha a opção</option>
+                    <option value="hospital" <?PHP echo ($dadolink->categoria == "hospital") ? "selected" : ""  ?> >Hospital</option>
+                    <option value="vidaeimagem" <?PHP echo ($dadolink->categoria == "vidaeimagem") ? "selected" : ""  ?> >Vida & Imagem</option>
+                    <option value="hapclinica" <?PHP echo ($dadolink->categoria == "hapclinica") ? "selected" : ""  ?> >Hapclínica</option>
+                    <option value="prontoatendimento" <?PHP echo ($dadolink->categoria == "prontoatendimento") ? "selected" : ""  ?> >Pronto Atendimento</option>
+                    <option value="centrodedistribuicao" <?PHP echo ($dadolink->categoria == "centrodedistribuicao") ? "selected" : ""  ?> >Centro de Distribuição</option>
+                    <option value="medprev" <?PHP echo ($dadolink->categoria == "medprev") ? "selected" : ""  ?> >Medicina Preventiva</option>
+                    <option value="laboratorio" <?PHP echo ($dadolink->categoria == "laboratorio") ? "selected" : ""  ?> >Laboratório</option>
+                    <option value="administrativo" <?PHP echo ($dadolink->categoria == "administrativo") ? "selected" : ""  ?> >Administrativo</option>
+                    <option value="ambulatorio" <?PHP echo ($dadolink->categoria == "ambulatorio") ? "selected" : ""  ?> >Ambulátorio</option>
+                    <option value="outros" <?PHP echo ($dadolink->categoria == "outros") ? "selected" : ""  ?> >Outros</option>
+                </select>
+            <label>CATEGORIA</label>
+      </div>
         
         <?PHP 
         
         if(!empty($_GET['id']) and isset($_GET['id'])){
             
-            $saidaID2 = "SELECT ID, CONCAT(operadora,'_',tipo) AS nomea, ativo FROM inventario.link_hapvida WHERE ID_unidade = " . $dadolink->ID . ";";
+            $saidaID2 = "SELECT ID, CONCAT(operadora,'_',tipo) AS nomea, ativo FROM inventario.link_hapvida WHERE visivel_l = 1 and ID_unidade = " . $dadolink->ID . ";";
             $linksaindo2 = $connect->prepare($saidaID2);
             $linksaindo2->execute();
             $val = $linksaindo2->rowCount();
@@ -151,7 +175,7 @@ include("../menu/menu.php");
                 <input name="descricao_u" id="DESCRICAO_U" type="text" value="<?PHP echo $dadolink->descricao_u; ?>" >
                 <label for="DESCRICAO_U">Descrição</label>
        </div>
-
+</form>
       </div>
     </div>
   </div>
@@ -181,10 +205,60 @@ if($_SESSION['admLink'] == 1 or $_SESSION['tipo'] == 'Admin'){
 <script src='/SCL/dist/js/jquery-3.5.1.js'></script>
 <script src='/SCL/dist/js/bootstrap.bundle.min.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="/SCL/js/formToJson.js"></script>
 <script src="/SCL/js/core2.js"></script>
 <script src="/SCL/js/coreMenu.js"></script>
 <script src="/SCL/js/core3.js"></script>
 <script src="/SCL/js/geral.js"></script>
-<!-- <script src="/SCL/js/jquery-ui.js"></script> -->
+<script>
+
+function replacer2(key, value) {
+  if (value == "") {
+    return null;
+  } else if(value == "0000-00-00"){
+    return undefined;
+  }else{
+    return value;
+  }
+  
+}
+
+function replacer(key, value) {
+  if(value == "0000-00-00"){
+    return undefined;
+  }else{
+    return value;
+  }
+  
+}
+
+$("#salvarvalores").click(function() {
+// alert(JSON.stringify($("form").formToJson()));
+alert("Unidade Atualizada");
+$.post( "newunidade.php", { data: JSON.stringify($("form").formToJson(),replacer), modo: "atualizar" } );
+
+});
+
+$("#deletarvalores").click(function() {
+// alert(JSON.stringify($("form").formToJson()));
+var r = confirm("Deseja Deletar o Link?");
+if (r==true){
+  $.ajax({ 
+    method: "POST", 
+    url: "newunidade.php", 
+    data: { 
+        data: JSON.stringify($("form").formToJson(),replacer), 
+        modo: "deletar" } }).done(
+          function( msg ) {
+            alert("Unidade Deletada");
+            location.reload(false);
+            return false;
+          });
+
+
+}
+
+});
+</script>
 </body>
 </html>

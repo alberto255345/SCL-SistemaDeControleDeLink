@@ -76,11 +76,8 @@ echo $json . '<br>';
 $ch = curl_init('http://10.5.90.139/zabbix/api_jsonrpc.php');
 
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-
 curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 
     'Content-Type: application/json',

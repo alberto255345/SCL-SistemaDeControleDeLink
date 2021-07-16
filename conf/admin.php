@@ -115,7 +115,7 @@ while ($row = $stmt3->fetch()) {
                         echo '<label for="ativo">Usuário Telecom</label>';
                         echo '<select class="form-control" id="ativo">';
                         echo '<option value="0" ' . (($row['telecom'] == "0") ? "selected" : "") . ' >Negado</option>';
-                        echo '<option value="1" ' . (($row['telecom'] == "1") ? "selected" : "") . ' >Acesso</option>';
+                        echo '<option value="1" ' . (($row['telecom'] == "1") ? "selected" : "") . ' >Autorizado</option>';
                         echo '</select>';
                     echo '</div>';
                 echo '</div>';
@@ -127,7 +127,7 @@ while ($row = $stmt3->fetch()) {
                         echo '<label for="ativo">Alterar a Senha</label>';
                         echo '<select class="form-control" id="ativo">';
                         echo '<option value="0" ' . (($row['changepass'] == "0") ? "selected" : "") . ' >Negado</option>';
-                        echo '<option value="1" ' . (($row['changepass'] == "1") ? "selected" : "") . ' >Acesso</option>';
+                        echo '<option value="1" ' . (($row['changepass'] == "1") ? "selected" : "") . ' >Autorizado</option>';
                         echo '</select>';
                     echo '</div>';
                 echo '</div>';
@@ -139,7 +139,7 @@ while ($row = $stmt3->fetch()) {
                         echo '<label for="ativo">Administração de OS</label>';
                         echo '<select class="form-control" id="ativo">';
                         echo '<option value="0" ' . (($row['admOS'] == "0") ? "selected" : "") . ' >Negado</option>';
-                        echo '<option value="1" ' . (($row['admOS'] == "1") ? "selected" : "") . ' >Acesso</option>';
+                        echo '<option value="1" ' . (($row['admOS'] == "1") ? "selected" : "") . ' >Autorizado</option>';
                         echo '</select>';
                     echo '</div>';
                 echo '</div>';
@@ -151,7 +151,7 @@ while ($row = $stmt3->fetch()) {
                         echo '<label for="ativo">Administração da Planta de Links</label>';
                         echo '<select class="form-control" id="ativo">';
                         echo '<option value="0" ' . (($row['admLink'] == "0") ? "selected" : "") . ' >Negado</option>';
-                        echo '<option value="1" ' . (($row['admLink'] == "1") ? "selected" : "") . ' >Acesso</option>';
+                        echo '<option value="1" ' . (($row['admLink'] == "1") ? "selected" : "") . ' >Autorizado</option>';
                         echo '</select>';
                     echo '</div>';
                 echo '</div>';
@@ -163,7 +163,7 @@ while ($row = $stmt3->fetch()) {
                         echo '<label for="ativo">Administração da Disponibilidade</label>';
                         echo '<select class="form-control" id="ativo">';
                         echo '<option value="0" ' . (($row['admDisp'] == "0") ? "selected" : "") . ' >Negado</option>';
-                        echo '<option value="1" ' . (($row['admDisp'] == "1") ? "selected" : "") . ' >Acesso</option>';
+                        echo '<option value="1" ' . (($row['admDisp'] == "1") ? "selected" : "") . ' >Autorizado</option>';
                         echo '</select>';
                     echo '</div>';
                 echo '</div>';
