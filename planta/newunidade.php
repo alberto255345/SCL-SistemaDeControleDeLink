@@ -175,28 +175,28 @@ include("../menu/menu.php");
       </div>
 
       <br>
-      <div class="input-field inline">
+      <div class="input-field d-inline-flex">
         <input style="width: 330px;" name="endereco2" id="ENDERECO2" type="text" value="<?PHP echo $dadolink->endereco2; ?>" >
         <label style="width: 330px;" for="ENDERECO2">Endereço 2</label>
       </div>
 
-      <div class="input-field inline">
-        <input style="width: 100px;" name="N2" id="N2" type="text" value="<?PHP echo $dadolink->endereco2; ?>" >
+      <div class="input-field d-inline-flex">
+        <input style="width: 100px;" name="N2" id="N2" type="text" value="<?PHP echo $dadolink->N2; ?>" >
         <label style="width: 100px;" for="N2">Número 2</label>
       </div>
 
-      <div class="input-field inline">
-        <input name="complemento2" id="COMPLEMENTO2" type="text" value="<?PHP echo $dadolink->endereco2; ?>" >
+      <div class="input-field d-inline-flex">
+        <input name="complemento2" id="COMPLEMENTO2" type="text" value="<?PHP echo $dadolink->complemento2; ?>" >
         <label for="COMPLEMENTO2">Complemento 2</label>
       </div>
 
-      <div class="input-field inline">
-        <input name="bairro2" id="BAIRRO2" type="text" value="<?PHP echo $dadolink->endereco2; ?>" >
+      <div class="input-field d-inline-flex">
+        <input name="bairro2" id="BAIRRO2" type="text" value="<?PHP echo $dadolink->bairro2; ?>" >
         <label for="BAIRRO2">Bairro 2</label>
       </div>
 
-      <div class="input-field inline">
-        <input name="cep2" id="CEP2" type="text" value="<?PHP echo $dadolink->endereco2; ?>" >
+      <div class="input-field d-inline-flex">
+        <input name="cep2" id="CEP2" type="text" value="<?PHP echo $dadolink->CEP2; ?>" >
         <label for="CEP2">CEP 2</label>
       </div>
 
@@ -209,7 +209,7 @@ include("../menu/menu.php");
             <label>ATIVO?</label>
       </div>
 
-      <div class="input-field inline">
+      <div class="input-field d-inline-flex">
                 <select name="categoria">
                     <option value="" disabled selected>Escolha a opção</option>
                     <option value="hospital" <?PHP echo ($dadolink->categoria == "hospital") ? "selected" : ""  ?> >Hospital</option>
@@ -226,6 +226,11 @@ include("../menu/menu.php");
             <label>CATEGORIA</label>
       </div>
 
+
+      <div class="input-field">
+                <input name="descricao_u" id="DESCRICAO_U" type="text" value="<?PHP echo $dadolink->descricao_u; ?>" >
+                <label for="DESCRICAO_U">Descrição</label>
+       </div>
 
       </form>
 

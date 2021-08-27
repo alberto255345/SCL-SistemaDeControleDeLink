@@ -13,6 +13,12 @@ $(document).ready(function() {
         table.column( 0 ).visible( false );
     });
 
+    $('#example thead th').each( function () {
+        var title = $('#example tfoot th').eq( $(this).index() ).text();
+        corposelect = corposelect + "<option value='" + $(this).index() + "'>" + title + "</option>";
+    } );
+    $('#saidaselect').html(corposelect);
+
     // $('#example thead tr').clone(true).appendTo( '#example thead' );
     var table = $('#example').DataTable({
         processing: true,
@@ -98,11 +104,7 @@ $(document).ready(function() {
     //// ocultar a coluna anexo para pesquisar
     table.column( 17 ).visible( false );
 
-    $('#example thead th').each( function () {
-        var title = $('#example tfoot th').eq( $(this).index() ).text();
-        corposelect = corposelect + "<option value='" + $(this).index() + "'>" + title + "</option>";
-    } );
-    $('#saidaselect').html(corposelect);
+   
 
     $('#example tfoot tr').appendTo('#example thead');
     $('#example').css("border-bottom","solid 1px black");
