@@ -10,3 +10,8 @@
     <link rel="stylesheet" href="/SCL/css/estilo1.css">
     <link rel="icon" type="image/png" href="/SCL/assets/img/logo.png">
     <script src="https://kit.fontawesome.com/7f17757d68.js" crossorigin="anonymous"></script>
+ 
+    <link href="/SCL/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <script defer src="/SCL/fontawesome/js/fontawesome.js"></script>
+
+    

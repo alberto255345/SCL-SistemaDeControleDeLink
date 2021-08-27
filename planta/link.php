@@ -174,8 +174,8 @@ include("../menu/menu.php");
         
         if(!empty($_GET['id']) and isset($_GET['id'])){
             
-            $saidaID2 = "SELECT ID, CONCAT(operadora,'_',tipo) AS nomea, ativo FROM inventario.link_hapvida WHERE visivel_l = 1 and ID_unidade = " . $dadolink->ID_unidade . ";";
-            $linksaindo2 = $connect->prepare($saidaID2);
+          $saidaID2 = "SELECT ID, CONCAT(operadora,'_',tipo) AS nomea, ativo FROM inventario.link_hapvida WHERE visivel_l = 1 and ID_unidade = " . $dadolink->ID_unidade . " UNION SELECT ID, CONCAT(operadora,'_',tipo,' Ponta B ') AS nomea, ativo FROM inventario.link_hapvida WHERE visivel_l = 1 and id_concentrador = " . $dadolink->ID_unidade . ";";
+          $linksaindo2 = $connect->prepare($saidaID2);
             $linksaindo2->execute();
             $val = $linksaindo2->rowCount();
             if($val > 1){
@@ -201,7 +201,7 @@ include("../menu/menu.php");
         ?>
 
 <div class="input-field">
-                <input disabled name="descricao_u" id="DESCRICAO_U" type="text" value="<?PHP echo $dadolink->descricao_u; ?>" >
+                <div class="select-wrapper disabled descri"><?PHP echo $dadolink->descricao_u; ?></div>
                 <label for="DESCRICAO_U">Descrição</label>
        </div>
 

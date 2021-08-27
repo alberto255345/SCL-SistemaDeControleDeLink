@@ -16,7 +16,7 @@ $stmt2->execute();
 $dado = $stmt2->fetch();
 
 if(!empty($_GET['id']) and isset($_GET['id'])){
-$saidaID = "SELECT un.visivel_u, un.apelido_u, un.ID, un.unidade, un.UF, un.cidade, un.endereco, un.N, un.complemento, un.bairro, un.CEP, un.ativo AS 'unidadeativa', un.descricao_u, un.categoria FROM unidade_hapvida AS un WHERE un.ID = " . $_GET['id'] . ";";
+$saidaID = "SELECT un.visivel_u, un.apelido_u, un.ID, un.unidade, un.UF, un.cidade, un.endereco, un.N, un.complemento, un.bairro, un.CEP, un.endereco2, un.N2, un.complemento2, un.bairro2, un.CEP2, un.ativo AS 'unidadeativa', un.descricao_u, un.categoria FROM unidade_hapvida AS un WHERE un.ID = " . $_GET['id'] . ";";
 $linksaindo = $connect->prepare($saidaID);
 $linksaindo->execute();
 $dadolink = $linksaindo->fetch(PDO::FETCH_OBJ);
@@ -115,6 +115,32 @@ include("../menu/menu.php");
         <label for="CEP">CEP</label>
       </div>
 
+      <br>
+      <div class="input-field d-inline-flex">
+        <input style="width: 330px;" name="endereco2" id="ENDERECO2" type="text" value="<?PHP echo $dadolink->endereco2; ?>" >
+        <label style="width: 330px;" for="ENDERECO2">Endereço 2</label>
+      </div>
+
+      <div class="input-field d-inline-flex">
+        <input style="width: 100px;" name="N2" id="N2" type="text" value="<?PHP echo $dadolink->N2; ?>" >
+        <label style="width: 100px;" for="N2">Número 2</label>
+      </div>
+
+      <div class="input-field d-inline-flex">
+        <input name="complemento2" id="COMPLEMENTO2" type="text" value="<?PHP echo $dadolink->complemento2; ?>" >
+        <label for="COMPLEMENTO2">Complemento 2</label>
+      </div>
+
+      <div class="input-field d-inline-flex">
+        <input name="bairro2" id="BAIRRO2" type="text" value="<?PHP echo $dadolink->bairro2; ?>" >
+        <label for="BAIRRO2">Bairro 2</label>
+      </div>
+
+      <div class="input-field d-inline-flex">
+        <input name="cep2" id="CEP2" type="text" value="<?PHP echo $dadolink->CEP2; ?>" >
+        <label for="CEP2">CEP 2</label>
+      </div>
+
       <div class="input-field inline">
                 <select name="ativo">
                     <option value="" disabled selected>Escolha a opção</option>
@@ -145,7 +171,8 @@ include("../menu/menu.php");
         
         if(!empty($_GET['id']) and isset($_GET['id'])){
             
-            $saidaID2 = "SELECT ID, CONCAT(operadora,'_',tipo) AS nomea, ativo FROM inventario.link_hapvida WHERE visivel_l = 1 and ID_unidade = " . $dadolink->ID . ";";
+            // $saidaID2 = "SELECT ID, CONCAT(operadora,'_',tipo) AS nomea, ativo FROM inventario.link_hapvida WHERE visivel_l = 1 and ID_unidade = " . $dadolink->ID . ";";
+            $saidaID2 = "SELECT ID, CONCAT(operadora,'_',tipo) AS nomea, ativo FROM inventario.link_hapvida WHERE visivel_l = 1 and ID_unidade = " . $dadolink->ID . " UNION SELECT ID, CONCAT(operadora,'_',tipo) AS nomea, ativo FROM inventario.link_hapvida WHERE visivel_l = 1 and id_concentrador = " . $dadolink->ID . ";";
             $linksaindo2 = $connect->prepare($saidaID2);
             $linksaindo2->execute();
             $val = $linksaindo2->rowCount();
