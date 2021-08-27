@@ -257,3 +257,8 @@ tr{
 .cordesativado {
   background: #fdc2c2;
 }
+
+.descri {
+  border-bottom: 1px dotted rgba(0,0,0,0.42);
+  color: rgba(0,0,0,0.42);
+}
