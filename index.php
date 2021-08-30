@@ -29,7 +29,7 @@ if(isset($_SESSION['usuario_log'])){
       <p>(85)98187-7040</p>
     </a>
     <br>
-    <a href="https://api.whatsapp.com/send?1=pt_br&amp;phone=05585988981321" style="line-height: 0px;font-size: 13px;text-align: center;width: 80%;padding-top: 10px; display: none;" class="card">
+    <a href="https://api.whatsapp.com/send?1=pt_br&amp;phone=05585988981321" style="line-height: 0px;font-size: 13px;text-align: center;width: 80%;padding-top: 10px; display: block;" class="card">
       <p>Whatsapp Plantonista</p>
       <p>Daniel Wagner</p>
       <p>(85)98898-1321</p>
@@ -39,7 +39,7 @@ if(isset($_SESSION['usuario_log'])){
       <p>Alberto Vitoriano</p>
       <p>(85)99980-7075</p>
     </a>
-    <a href="https://api.whatsapp.com/send?1=pt_br&amp;phone=05585991266459" style="line-height: 0px;font-size: 13px;text-align: center;width: 80%;padding-top: 10px; display: block;" class="card">
+    <a href="https://api.whatsapp.com/send?1=pt_br&amp;phone=05585991266459" style="line-height: 0px;font-size: 13px;text-align: center;width: 80%;padding-top: 10px; display: none;" class="card">
       <p>Whatsapp Plantonista</p>
       <p>Wendel Araújo</p>
       <p>(85)99126-6459</p>

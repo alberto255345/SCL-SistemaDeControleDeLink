@@ -282,7 +282,7 @@ function replacer(key, value) {
   } else if(value == "0000-00-00"){
     return undefined;
   }else{
-    return value;
+    return $.trim(value);
   }
   
 }

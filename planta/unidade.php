@@ -245,7 +245,7 @@ function replacer2(key, value) {
   } else if(value == "0000-00-00"){
     return undefined;
   }else{
-    return value;
+    return $.trim(value);
   }
   
 }
@@ -254,7 +254,7 @@ function replacer(key, value) {
   if(value == "0000-00-00"){
     return undefined;
   }else{
-    return value;
+    return $.trim(value);
   }
   
 }
@@ -278,7 +278,7 @@ if (r==true){
         modo: "deletar" } }).done(
           function( msg ) {
             alert("Unidade Deletada");
-            location.reload(false);
+            document.location.reload(true);
             return false;
           });
 

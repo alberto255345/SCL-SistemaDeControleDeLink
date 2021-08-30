@@ -262,3 +262,21 @@ tr{
   border-bottom: 1px dotted rgba(0,0,0,0.42);
   color: rgba(0,0,0,0.42);
 }
+
+.ganttescalaM {
+  display: grid;
+}
+
+.ganttescalaC {
+  display: flex;
+}
+
+.calendarFull{
+  width: 100% !important;
+}
+
+.tabelasegunda {
+  overflow: auto;
+  height: 400px;
+  width: 100%;
+}
