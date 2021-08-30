@@ -16,6 +16,9 @@
                 if($_SESSION['tipo'] == 'Admin'){
                     echo "<li><a href='/SCL/conf/admin.php'>Gerenciamento Administrativo</a></li>";
                     echo "<li><a href='/SCL/conf/comandos.php'>Comandos Zabbix</a></li>";
+                }
+                if($_SESSION['tipo'] == 'telecom' or $_SESSION['tipo'] == 'Admin'){
+                    echo "<li><a href='/SCL/escala/'>Plantão Telecom</a></li>";
                 } 
                 ?>
                 <li><a href="/SCL/logout.php">Logout</a></li>

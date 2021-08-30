@@ -34,6 +34,7 @@ if(isset($_SESSION['mensagem'])){
 <div class="card clickmenu" >Usuário</div>
 <div class="card clickmenu" >Gráficos</div>
 <div class="card clickmenu" >Disponibilidade</div>
+<div class="card clickmenu" >Plantão Telecom</div>
 <div class="card clickmenu" >Consulta de Links</div>
 <div class="card clickmenu" >Link Grafana</div>
 <div class="card clickmenu" >Gestão de Os</div>

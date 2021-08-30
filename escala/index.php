@@ -17,7 +17,11 @@ $dado = $stmt2->fetch();
 
 include("../linkgeral.php");
 ?>
-
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/SCL/css/calendario.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
     <link rel="stylesheet" href="/SCL/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="/SCL/css/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
@@ -38,33 +42,224 @@ include("../menu/menu.php");
 
 <div style="text-align: left;">
 <?PHP
-    if($_SESSION['admLink'] == 1 or $_SESSION['tipo'] == 'Admin'){
-        echo '<a href="/SCL/planta/newunidade.php" class="myButton">Criar Unidade</a>&nbsp;';
-        echo '<a href="/SCL/planta/newlink.php" class="myButton">Criar Link</a>';
+    if($_SESSION['admEscala'] == 1 or $_SESSION['tipo'] == 'Admin'){
+        echo '<a href="#modal1" id="criaescala" class="waves-effect waves-light btn modal-trigger">Cadastrar</a>';
+        echo '<a href="#" id="editarescala" class="waves-effect waves-light btn disabled">Editar</a>';
+        echo '<a href="#" id="deleteescala" class="waves-effect waves-light btn disabled">Deletar</a>';
     }
+?><a href="#" id="totalescala" class="waves-effect waves-light btn">Total de Horas ao Mês</a>
+</div>
+<br>
+<div id="ganttescala" >
+
+<?PHP
+
+include($_SERVER["DOCUMENT_ROOT"]."/SCL/escala/calendario.php");
+
 ?>
-    <a id="donwload" href="#" class="myButton">Download Base</a>
-    <a id="limparid" href="#" class="myButton">Limpar Filtro</a>
+    <div id="tabelasegunda" class="tabelasegunda">
+    <table>
+        <tr>
+            <th>Selecionar</th>
+            <th>Data de Criação</th>
+            <th>Usuário Criador</th>
+            <th>Atividade</th>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" id="idescala" name="idescala" value="1">
+                    <span>1</span>
+                </label>
+            </td>
+            <td>2021-07-12 12:40:33</td>
+            <td>Alberto</td>
+            <td>Ínicio de Escala 12/03/2021 00:00 Alberto <i class="fas fa-file-import"></i><br>Saída da Escala 13/03/2021 23:59 Alberto <i class="fas fa-file-export"></i></td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" id="idescala" name="idescala" value="1">
+                    <span>1</span>
+                </label>
+            </td>
+            <td>2021-07-12 12:40:33</td>
+            <td>Alberto</td>
+            <td>Ínicio de Escala 12/03/2021 00:00 Alberto <i class="fas fa-file-import"></i><br>Saída da Escala 13/03/2021 23:59 Alberto <i class="fas fa-file-export"></i></td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" id="idescala" name="idescala" value="1">
+                    <span>1</span>
+                </label>
+            </td>
+            <td>2021-07-12 12:40:33</td>
+            <td>Alberto</td>
+            <td>Ínicio de Escala 12/03/2021 00:00 Alberto <i class="fas fa-file-import"></i><br>Saída da Escala 13/03/2021 23:59 Alberto <i class="fas fa-file-export"></i></td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" id="idescala" name="idescala" value="1">
+                    <span>1</span>
+                </label>
+            </td>
+            <td>2021-07-12 12:40:33</td>
+            <td>Alberto</td>
+            <td>Ínicio de Escala 12/03/2021 00:00 Alberto <i class="fas fa-file-import"></i><br>Saída da Escala 13/03/2021 23:59 Alberto <i class="fas fa-file-export"></i></td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" id="idescala" name="idescala" value="1">
+                    <span>1</span>
+                </label>
+            </td>
+            <td>2021-07-12 12:40:33</td>
+            <td>Alberto</td>
+            <td>Ínicio de Escala 12/03/2021 00:00 Alberto <i class="fas fa-file-import"></i><br>Saída da Escala 13/03/2021 23:59 Alberto <i class="fas fa-file-export"></i></td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" id="idescala" name="idescala" value="1">
+                    <span>1</span>
+                </label>
+            </td>
+            <td>2021-07-12 12:40:33</td>
+            <td>Alberto</td>
+            <td>Ínicio de Escala 12/03/2021 00:00 Alberto <i class="fas fa-file-import"></i><br>Saída da Escala 13/03/2021 23:59 Alberto <i class="fas fa-file-export"></i></td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" id="idescala" name="idescala" value="1">
+                    <span>1</span>
+                </label>
+            </td>
+            <td>2021-07-12 12:40:33</td>
+            <td>Alberto</td>
+            <td>Ínicio de Escala 12/03/2021 00:00 Alberto <i class="fas fa-file-import"></i><br>Saída da Escala 13/03/2021 23:59 Alberto <i class="fas fa-file-export"></i></td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" id="idescala" name="idescala" value="1">
+                    <span>1</span>
+                </label>
+            </td>
+            <td>2021-07-12 12:40:33</td>
+            <td>Alberto</td>
+            <td>Ínicio de Escala 12/03/2021 00:00 Alberto <i class="fas fa-file-import"></i><br>Saída da Escala 13/03/2021 23:59 Alberto <i class="fas fa-file-export"></i></td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" id="idescala" name="idescala" value="1">
+                    <span>1</span>
+                </label>
+            </td>
+            <td>2021-07-12 12:40:33</td>
+            <td>Alberto</td>
+            <td>Ínicio de Escala 12/03/2021 00:00 Alberto <i class="fas fa-file-import"></i><br>Saída da Escala 13/03/2021 23:59 Alberto <i class="fas fa-file-export"></i></td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" id="idescala" name="idescala" value="1">
+                    <span>1</span>
+                </label>
+            </td>
+            <td>2021-07-12 12:40:33</td>
+            <td>Alberto</td>
+            <td>Ínicio de Escala 12/03/2021 00:00 Alberto <i class="fas fa-file-import"></i><br>Saída da Escala 13/03/2021 23:59 Alberto <i class="fas fa-file-export"></i></td>
+        </tr>
+    </table>
+    </div>
 </div>
 
 
-<div id="ganttescala" ></div>
+</div>
+</div>
+</div>
 
-
-</div>
-</div>
-</div>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
 
 <script src='/SCL/dist/js/jquery-3.5.1.js'></script>
 <script src='/SCL/dist/js/bootstrap.bundle.min.js'></script>
-<script src="https://cdn.jsdelivr.net/npm/gantt-schedule-timeline-calendar"></script>
 
 <script src="/SCL/js/coreMenu.js"></script>
 <script src="/SCL/js/core3.js"></script>
 <script src="/SCL/js/geral.js"></script>
+<script>
 
+$(document).ready(function(){
+    
+    $('#criaescala').click(function () { 
+        $('.modal').modal();
+    });
 
-<script src="/SCL/js/gantt-js.js"></script>
+    $("input[type='checkbox']").change(function() {
+    var ver = 0;
+        $("input[type='checkbox']").each(function()
+            {                  
+                if($(this).prop("checked")){
+                    ver++;
+                }
+            });
+        if(ver == 0){
+            $( "#editarescala" ).addClass( "disabled" );
+            $( "#deleteescala" ).addClass( "disabled" );
+        }else{
+            $( "#editarescala" ).removeClass( "disabled" );
+            $( "#deleteescala" ).removeClass( "disabled" );
+        }
+    });
+
+    if(window.matchMedia("(max-width: 767px)").matches){
+        // The viewport is less than 768 pixels wide
+        // alert("This is a mobile device.");
+        $( "#ganttescala" ).removeClass( "ganttescalaC" );
+        $( "#ganttescala" ).addClass( "ganttescalaM" );
+        $( "#tablecalendar" ).addClass( "calendarFull" );
+        $( "#tabelasegunda" ).removeClass( "tabelasegunda" );
+    } else{
+        // The viewport is at least 768 pixels wide
+        $( "#ganttescala" ).removeClass( "ganttescalaM" );
+        $( "#ganttescala" ).addClass( "ganttescalaC" );
+        $( "#tablecalendar" ).removeClass( "calendarFull" );
+        $( "#tabelasegunda" ).addClass( "tabelasegunda" );
+    }
+});
+
+$(document).on('resize', function(){
+    if(window.matchMedia("(max-width: 767px)").matches){
+        // The viewport is less than 768 pixels wide
+        // alert("This is a mobile device.");
+        $( "#ganttescala" ).removeClass( "ganttescalaC" );
+        $( "#ganttescala" ).addClass( "ganttescalaM" );
+        $( "#tablecalendar" ).addClass( "calendarFull" );
+        $( "#tabelasegunda" ).removeClass( "tabelasegunda" );
+    } else{
+        // The viewport is at least 768 pixels wide
+        $( "#ganttescala" ).removeClass( "ganttescalaM" );
+        $( "#ganttescala" ).addClass( "ganttescalaC" );
+        $( "#tablecalendar" ).removeClass( "calendarFull" );
+        $( "#tabelasegunda" ).addClass( "tabelasegunda" );
+    }
+});
+
+</script>
 
 </body>
 </html>
