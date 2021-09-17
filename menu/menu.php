@@ -26,15 +26,14 @@
             </fig>
             <div class="listinha"></div>
         </li>
-        <li>
-            <fig>
-            <div class="link"><i class="fas fa-chart-line"></i>Gráficos<i class="fa fa-chevron-down"></i></div>
-            <ul class="submenu">
-                <li><a href="/SCL/grafico/1.php">Gráfico 1</a></li>
-            </ul>
-            </fig>
-            <div class="listinha"></div>
-        </li>
+        <?PHP 
+        $path5 = $_SERVER['DOCUMENT_ROOT'];
+        $path5 .= "/SCL/menu/grafico.php";
+
+        if($_SESSION['grafAcess'] == 1 or $_SESSION['tipo'] == 'Admin'){
+            include($path5);
+        }
+        ?>
         <?PHP 
         $path5 = $_SERVER['DOCUMENT_ROOT'];
         $path5 .= "/SCL/menu/disp.php";

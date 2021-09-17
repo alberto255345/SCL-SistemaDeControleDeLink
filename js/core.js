@@ -4,6 +4,32 @@ $(".form-control").keyup(function(event) {
     }
 });
 
+function ajustar() {
+    var valorAltura = $(window).height() - 104;
+    var original = $(window).height();
+
+    if($("#plantaoid").is(":visible")){
+        valorAltura = valorAltura - $("#plantaoid").height();
+    }
+    if($("#container1").is(":visible")){
+        valorAltura = valorAltura - $("#container1").height();
+    }
+    if($("#container2").hasClass("cont2") == false){
+        valorAltura = valorAltura - $("#container1").height();
+    }
+    if($("#retornoalert2").hasClass("show")){
+        valorAltura = valorAltura - $("#retornoalert2").height();
+    }
+    
+    valorAltura = valorAltura/2;
+
+    if ($(window).height() > original || valorAltura < 0) {
+        valorAltura = 20;
+    }
+    
+    $('.heidi').animate({  height: valorAltura + "px"}, {  duration: "fast"});
+    return 0;
+};
 
 
 function detectIE() {
@@ -51,14 +77,16 @@ function registerUser() {
                 // if ajax.php returns success, redirect to homepage or whatever
                 $("#retornoalert").html("Cadastrado com <strong>sucesso</strong> usuário!");
                 $(':input').val("");
+                $("#retornoalert2").removeClass("cont2");
                 $("#retornoalert2").addClass("show");
-                $('.heidi').animate({  height: "20%"}, {  duration: "slow"});
+                // teste // $('.heidi').animate({  height: "20%"}, {  duration: "slow"});
                 $('#container2').animate({  height: "toggle", opacity: "toggle"}, {  duration: "slow"});
                 $('#container1').animate({  height: "toggle",  opacity: "toggle"}, {  duration: "slow"});
         
             } else {
                 // if ajax.php returns failure, display error
                 $("#retornoalert").html("<strong>Error</strong> no cadastrado do usuário!<br>" + resultFIM);
+                $("#retornoalert2").removeClass("cont2");
                 $("#retornoalert2").addClass("show");
             }  
         },
@@ -88,6 +116,7 @@ function loginUser() {
             } else {
                 // if ajax.php returns failure, display error
                 $("#retornoalert").html("<strong>Error</strong> no login!<br>" + resultFIM);
+                $("#retornoalert2").removeClass("cont2");
                 $("#retornoalert2").addClass("show");
             }  
         },
@@ -99,7 +128,7 @@ function loginUser() {
 
 $(document).ready(function() {
 
-
+    ajustar();
 
     function bin2hex(s){  
         // Converts the binary representation of data to hex    
@@ -209,16 +238,18 @@ $(document).ready(function() {
         // $('.heidi').animate({  height: "15%"}, {  duration: "slow"});
         $('#container2').animate({  height: "toggle",  opacity: "toggle"}, {  duration: "slow"});
         $('#plantaoid').animate({  height: "toggle",  opacity: "toggle"}, {  duration: "slow"});
-
+        // $("#retornoalert2").removeClass("cont2");
         $('#container1').animate({  height: "toggle",  opacity: "toggle"}, {  duration: "slow"});
-
+        ajustar();
     });
 
     $( "#btn642" ).click(function() {
-        $('.heidi').animate({  height: "20%"}, {  duration: "slow"});
+        // teste // $('.heidi').animate({  height: "20%"}, {  duration: "slow"});
         $('#container2').animate({  height: "toggle", opacity: "toggle"}, {  duration: "slow"});
-
+        $('#plantaoid').animate({  height: "toggle",  opacity: "toggle"}, {  duration: "slow"});
+        $("#container2").removeClass("cont2");
         $('#container1').animate({  height: "toggle",  opacity: "toggle"}, {  duration: "slow"});
+        ajustar();
 
     });
 
@@ -282,6 +313,10 @@ $(document).ready(function() {
 
 });
 
+$("btn122").click(function(){
+    $('#btn122').prop('disabled', true);
+});
+
 $("#btnpass").hover(
     function () {
        
@@ -338,11 +373,13 @@ function alterarpass() {
                 // if ajax.php returns success, redirect to homepage or whatever
                 $("#retornoalert").html("Senha alterada com <strong>sucesso</strong>!");
                 $(':input').val("");
+                $("#retornoalert2").removeClass("cont2");
                 $("#retornoalert2").addClass("show");
 
             } else {
                 // if ajax.php returns failure, display error
                 $("#retornoalert").html("<strong>Error</strong> no login!<br>" + resultFIM);
+                $("#retornoalert2").removeClass("cont2");
                 $("#retornoalert2").addClass("show");
             }   
         },

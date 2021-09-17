@@ -8,7 +8,7 @@ include($path2);
 
 function aspas($n)
 {
-    return '"' . $n . '"';
+    return '"' . trim($n) . '"';
 }
 
 function fundir($a,$b){
@@ -43,13 +43,13 @@ if($_SESSION['admLink'] == 1 or $_SESSION['tipo'] == 'Admin'){
             if (empty($value)) {
               $arr = $key . ' = NULL';
             }else{
-              $arr = $key . ' = "' . $value . '"';
+              $arr = $key . ' = "' . trim($value) . '"';
             }
           }else {
             if (empty($value)) {
               $arr = $arr . ' , ' . $key . ' = NULL';
             }else{
-              $arr = $arr . ' , ' . $key . ' = "' . $value . '"';
+              $arr = $arr . ' , ' . $key . ' = "' . trim($value) . '"';
             }
           }
         }
@@ -314,7 +314,7 @@ function replacer(key, value) {
   } else if(value == "0000-00-00"){
     return undefined;
   }else{
-    return $.trim(value);
+    return value;
   }
   
 }

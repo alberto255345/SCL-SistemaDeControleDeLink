@@ -6,9 +6,9 @@ $path2 .= "/SCL/db/protect.php";
 include($path2);
 
 
-function aspas($n)
+function aspas($value)
 {
-    return '"' . $n . '"';
+    return '"' . trim($value) . '"';
 }
 
 if($_SESSION['admLink'] != 1 and $_SESSION['tipo'] != 'Admin'){
@@ -35,13 +35,13 @@ if($_SESSION['admLink'] == 1 or $_SESSION['tipo'] == 'Admin'){
               if (empty($value)) {
                 $arr = $key . ' = NULL';
               }else{
-                $arr = $key . ' = "' . $value . '"';
+                $arr = $key . ' = "' . trim($value) . '"';
               }
             }else {
               if (empty($value)) {
                 $arr = $arr . ' , ' . $key . ' = NULL';
               }else{
-                $arr = $arr . ' , ' . $key . ' = "' . $value . '"';
+                $arr = $arr . ' , ' . $key . ' = "' . trim($value) . '"';
               }
             }
           }
@@ -241,7 +241,9 @@ include("../menu/menu.php");
 </div>
     <div>
     <a class="waves-effect waves-light btn" href="/SCL/planta/">Voltar</a>
+    <a class="waves-effect waves-light btn" href="/SCL/planta/newlink.php">Novo Link</a>
     <a class="waves-effect waves-light btn" href="#" id="salvarvalores">Salvar</a>
+
     </div>
 
  
@@ -282,7 +284,7 @@ function replacer(key, value) {
   } else if(value == "0000-00-00"){
     return undefined;
   }else{
-    return $.trim(value);
+    return value;
   }
   
 }

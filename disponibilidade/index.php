@@ -39,31 +39,11 @@ include("../menu/menu.php");
 
 <div style="text-align: left;">
 <a href="/SCL/disponibilidade/newdisp.php" class="myButton">Inserir Disponibilidade</a>&nbsp;
-<a id="filtrar" href="#" class="myButton">Filtar Disponibilidade</a>
+<a id="filtrar" href="#" class="myButton">Filtrar Disponibilidade</a>
 <a id="donwload" href="#" class="myButton">Download Base da Disponibilidade</a>
 </div>
 
-<!-- Modal -->
-<div class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal -->
+
 
 <table id="example" class="display" style="width:100%">
         <thead>
@@ -180,19 +160,6 @@ $(document).ready(function() {
     $('input').eq(6).css("width","3rem");
     $('input').eq(7).css("width","3rem");
     $('input').eq(8).css("width","3rem");
-
-    $('#example tbody').on( 'click', 'a', function () {
-        var data = table.row( $(this).parents('tr') ).data();
-        $('#myModal').modal('show');
-        window.location.href = "link.php?id=" + data[0];
-    } );
-
-    $('#filtrar').click( function () {
-        alert("oi");
-        $('#myModal').modal('show');
-        table.ajax.url( '/SCL/disponibilidade/dados.php' ).load();
-    } );
-
 } );
 
 </script>

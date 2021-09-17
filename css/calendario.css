@@ -14,10 +14,27 @@ td.day { width: 14.285%; transition: all 0.3s; font-size: 14px; color: rgba(255,
 
 span.number { margin-left: 10% }
 
-span.event { height: 4px; background-color: rgba(0,0,0,.3); display: block; margin: 5px 10%; border-radius: 2px; background-color: #91c33b; }
+span.event { height: 8px; background-color: rgba(0,0,0,.3); display: block; margin: 5px 10%; border-radius: 2px; background-color: #91c33b; }
 
 span.event-multiday { margin: 5px -2px; border-radius: 0; }
 span.event-multiday-start { margin-right: -4px;  }
 span.event-multiday-finish { margin-left: -4px;  }
 
 span.event-ghost { background-color:transparent; }
+
+.event:hover {
+    animation-name: example;
+    animation-duration: 0.25s;
+    animation-fill-mode: forwards;
+    background-color: #dc474b;
+  }
+  
+  @keyframes example {
+      0%    {background-color: #ff8582;}
+      16%   {background-color: #ff7b78;}
+      32%   {background-color: #ff706f;}
+      48%   {background-color: #ff6666;}
+      64%   {background-color: #f35c5d;}
+      80%   {background-color: #e85154;}
+      100%  {background-color: #dc474b;}
+  }
