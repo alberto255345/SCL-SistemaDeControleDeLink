@@ -4,6 +4,12 @@ $path2 = $_SERVER['DOCUMENT_ROOT'];
 $path2 .= "/SCL/db/protect.php";
 include($path2);
 
+if($_SESSION['grafAcess'] != 1 and $_SESSION['tipo'] != 'Admin'){
+    $_SESSION['mensagem'] = "Sem Acesso a esse Link!";
+    header('Location: /SCL/');
+}
+
+
 function agroup_array($array){
 $new_array = array();
 $sortable_array = array();
@@ -48,8 +54,7 @@ foreach ($sortable_array as &$value) {
 return $new_array;
 };
 
-function array_sort($array, $on, $order=SORT_ASC)
-{
+function array_sort($array, $on, $order=SORT_ASC){
     $new_array = array();
     $sortable_array = array();
 

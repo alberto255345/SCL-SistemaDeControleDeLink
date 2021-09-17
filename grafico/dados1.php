@@ -7,6 +7,12 @@ $path2 = $_SERVER['DOCUMENT_ROOT'];
 $path2 .= "/SCL/db/protect.php";
 include($path2);
 
+if($_SESSION['grafAcess'] != 1 and $_SESSION['tipo'] != 'Admin'){
+    $_SESSION['mensagem'] = "Sem Acesso a esse Link!";
+    header('Location: /SCL/');
+}
+
+
 $geral = "select ll.UF, ll.unidade as metric, 
 if(AVG(ll.ONLINE) = 0 AND avg(ll.degra) = 0,3,if(AVG(ll.ONLINE) = 0 AND avg(ll.degra) = 1,3,if(AVG(ll.ONLINE) = 0 AND avg(ll.degra) > 0 AND avg(ll.degra) < 1,3,if(AVG(ll.ONLINE) = 1 AND avg(ll.degra) = 0,0,if(AVG(ll.ONLINE) = 1 AND avg(ll.degra) = 1,1,if(AVG(ll.ONLINE) = 1 AND avg(ll.degra) > 0 AND avg(ll.degra) < 1,1,if(AVG(ll.degra) = 0 AND avg(ll.ONLINE) > 0 AND avg(ll.ONLINE) < 1,2,if(AVG(ll.degra) = 1 AND avg(ll.ONLINE) > 0 AND avg(ll.ONLINE) < 1,2,if(avg(ll.degra) > 0 AND avg(ll.degra) < 1 AND avg(ll.ONLINE) > 0 AND avg(ll.ONLINE) < 1,2,3))))))))) AS value 
 FROM (SELECT hh.*, if(hh.falha=1,0,1) AS ONLINE, 

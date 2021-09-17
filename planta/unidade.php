@@ -245,7 +245,7 @@ function replacer2(key, value) {
   } else if(value == "0000-00-00"){
     return undefined;
   }else{
-    return $.trim(value);
+    return value;
   }
   
 }
@@ -254,7 +254,7 @@ function replacer(key, value) {
   if(value == "0000-00-00"){
     return undefined;
   }else{
-    return $.trim(value);
+    return value;
   }
   
 }

@@ -2,6 +2,12 @@
 $path2 = $_SERVER['DOCUMENT_ROOT'];
 $path2 .= "/SCL/db/protect.php";
 include($path2);
+
+if($_SESSION['grafAcess'] != 1 and $_SESSION['tipo'] != 'Admin'){
+    $_SESSION['mensagem'] = "Sem Acesso a esse Link!";
+    header('Location: /SCL/');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

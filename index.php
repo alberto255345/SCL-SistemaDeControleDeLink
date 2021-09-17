@@ -2,11 +2,28 @@
 if(!isset($_SESSION))
 session_start();
 
+// $path2 = $_SERVER['DOCUMENT_ROOT'];
+// $path2 .= "/SCL/db/protect.php";
+// include($path2);
+define('db_hostname', '127.0.0.1');
+define('db_username', 'alberto');
+define('db_password', '123456');
+define('db_database', 'inventario');
+$connect = new PDO("mysql:host=".db_hostname."; dbname=".db_database, db_username, db_password);
+$connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $saidaID = "SELECT usi.nome, usi.telefone, somb.ponto, if( horasSUM.TIME2 IS NULL, horasSUM.TIME1, SEC_TO_TIME( TIME_TO_SEC(horasSUM.TIME1) + TIME_TO_SEC(horasSUM.TIME2))) AS Total  FROM sobreaviso AS somb LEFT JOIN (SELECT ID AS ID_2, TIMEDIFF(p1fim,p1inicio) AS TIME1, TIMEDIFF(p2fim,p2inicio) AS TIME2 FROM horas_sobreaviso) AS horasSUM ON somb.TIPO = horasSUM.ID_2 LEFT JOIN user AS usi ON somb.ID_USER = usi.cod WHERE somb.PAI IS NOT NULL AND somb.PONTO > CURDATE() ORDER BY somb.PONTO ASC LIMIT 1;";
+    $escalaDB = $connect->prepare($saidaID);
+    $escalaDB->execute();
+    $dadolink = $escalaDB->fetch(PDO::FETCH_OBJ);
+
 if(isset($_SESSION['usuario_log'])){
             echo "<script>location.href='http://10.5.90.139/SCL/home.php';</script>";
             exit();
             unset($_SESSION['email']);
     }
+
+
 ?>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,20 +46,10 @@ if(isset($_SESSION['usuario_log'])){
       <p>(85)98187-7040</p>
     </a>
     <br>
-    <a href="https://api.whatsapp.com/send?1=pt_br&amp;phone=05585988981321" style="line-height: 0px;font-size: 13px;text-align: center;width: 80%;padding-top: 10px; display: block;" class="card">
+    <a href="https://api.whatsapp.com/send?1=pt_br&amp;phone=055<?PHP echo preg_replace("/(\(|\-|\)|\s)/","",$dadolink->telefone); ?>" style="line-height: 0px;font-size: 13px;text-align: center;width: 80%;padding-top: 10px; display: block;" class="card">
       <p>Whatsapp Plantonista</p>
-      <p>Daniel Wagner</p>
-      <p>(85)98898-1321</p>
-    </a>
-    <a href="https://api.whatsapp.com/send?1=pt_br&amp;phone=05585999807075" style="line-height: 0px;font-size: 13px;text-align: center;width: 80%;padding-top: 10px; display: none;" class="card">
-      <p>Whatsapp Plantonista</p>
-      <p>Alberto Vitoriano</p>
-      <p>(85)99980-7075</p>
-    </a>
-    <a href="https://api.whatsapp.com/send?1=pt_br&amp;phone=05585991266459" style="line-height: 0px;font-size: 13px;text-align: center;width: 80%;padding-top: 10px; display: none;" class="card">
-      <p>Whatsapp Plantonista</p>
-      <p>Wendel Araújo</p>
-      <p>(85)99126-6459</p>
+      <p><?PHP echo $dadolink->nome; ?></p>
+      <p><?PHP echo $dadolink->telefone; ?></p>
     </a>
     <br>
   </div>
@@ -70,7 +77,7 @@ if(isset($_SESSION['usuario_log'])){
                 </div>
         </div>
         <br>
-        <div id="retornoalert2" class="alert container df233 colorr1 alert-warning alert-dismissible fade" role="alert">
+        <div id="retornoalert2" class="cont2 alert container df233 colorr1 alert-warning alert-dismissible fade" role="alert">
         <span id="retornoalert"><strong>Sucesso</strong> I'm an alert</span>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>

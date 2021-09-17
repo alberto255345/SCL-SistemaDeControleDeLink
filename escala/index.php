@@ -40,10 +40,23 @@ include("../menu/menu.php");
 <div id="separa" style="align-items: center; margin: 5px; border-radius: 5px;">
 <div style="text-align: center;">
 
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-red btn-flat">Disagree</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+<!-- End Modal Structure -->
+
 <div style="text-align: left;">
 <?PHP
     if($_SESSION['admEscala'] == 1 or $_SESSION['tipo'] == 'Admin'){
-        echo '<a href="#modal1" id="criaescala" class="waves-effect waves-light btn modal-trigger">Cadastrar</a>';
+        echo '<a href="#modal1" data-target="modal1" id="criaescala" class="waves-effect waves-light btn modal-trigger">Cadastrar</a>';
         echo '<a href="#" id="editarescala" class="waves-effect waves-light btn disabled">Editar</a>';
         echo '<a href="#" id="deleteescala" class="waves-effect waves-light btn disabled">Deletar</a>';
     }
@@ -184,17 +197,6 @@ include($_SERVER["DOCUMENT_ROOT"]."/SCL/escala/calendario.php");
 </div>
 </div>
 
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-  </div>
-
 <script src='/SCL/dist/js/jquery-3.5.1.js'></script>
 <script src='/SCL/dist/js/bootstrap.bundle.min.js'></script>
 
@@ -204,7 +206,7 @@ include($_SERVER["DOCUMENT_ROOT"]."/SCL/escala/calendario.php");
 <script>
 
 $(document).ready(function(){
-    
+
     $('#criaescala').click(function () { 
         $('.modal').modal();
     });

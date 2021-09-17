@@ -179,7 +179,7 @@ include("../menu/menu.php");
             $linksaindo2->execute();
             $val = $linksaindo2->rowCount();
             if($val > 1){
-                echo "<Label>Links Vinculados a Unidade:</Label>";
+                echo "<Label>Links Vinculados a Unidade:</Label><div style='line-height: 3rem'>";
             }
 
             while ($linha = $linksaindo2->fetch(PDO::FETCH_ASSOC)) {
@@ -195,8 +195,11 @@ include("../menu/menu.php");
                 }
             }
 
-            }
 
+            }
+            if($val > 1){
+                echo "</div>";
+            }
 
         ?>
 
@@ -369,7 +372,8 @@ include("../menu/menu.php");
 <?PHP
 if($_SESSION['admLink'] == 1 or $_SESSION['tipo'] == 'Admin'){
   echo '<a class="waves-effect waves-light btn" href="#" id="salvarvalores">Salvar</a>&nbsp;';
-  echo '<a class="waves-effect waves-light btn" href="/SCL/planta/unidade.php?id=' . $dadolink->ID_unidade . '" id="editarunidade">Editar Unidade</a>';
+  echo '<a class="waves-effect waves-light btn" href="/SCL/planta/unidade.php?id=' . $dadolink->ID_unidade . '" id="editarunidade">Editar Unidade</a>&nbsp;';
+  echo '<a class="waves-effect waves-light btn" href="/SCL/planta/newlink.php?id=' . $dadolink->ID . '" id="editarunidade">Copiar Link</a>';
   echo ' <a class="waves-effect waves-light btn" href="#" id="deletarvalores">Deletar</a>';
 }
 ?>
@@ -410,7 +414,7 @@ function replacer(key, value) {
   if(value == "0000-00-00"){
     return undefined;
   }else{
-    return $.trim(value);
+    return value;
   }
   
 }

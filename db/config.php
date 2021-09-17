@@ -4,11 +4,13 @@ session_start();
 
 // Define database
 define('db_hostname', '127.0.0.1');
-define('db_username', 'alberto');
-define('db_password', '123456');
-define('db_database', 'inventario');
-define('db_database2', 'zabbix');
-define('db_database3', 'db_zabbix');
+
+	define('db_username', 'alberto');
+	define('db_password', '123456');
+
+		define('db_database', 'inventario');
+		define('db_database2', 'zabbix');
+		define('db_database3', 'db_zabbix');
 
 // Connecting database
 try {

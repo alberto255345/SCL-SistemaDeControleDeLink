@@ -24,7 +24,7 @@ protect();
 
 if(isset($_SESSION['email'])){
 
-  $sql = "SELECT admEscala, admDisp, admLink, admOS, changepass, email, telecom, tipo, cod as valor, ativo, nome, avatar FROM user WHERE email = '$_SESSION[email]'";
+  $sql = "SELECT grafAcess, admEscala, admDisp, admLink, admOS, changepass, email, telecom, tipo, cod as valor, ativo, nome, avatar FROM user WHERE email = '$_SESSION[email]'";
   $que = $connect->prepare($sql) or die($mysqli->error);
   $dado = $que->execute();
   $val = $que->rowCount();
@@ -49,6 +49,7 @@ if(isset($_SESSION['email'])){
       $_SESSION['admLink'] = $row->admLink;
       $_SESSION['admDisp'] = $row->admDisp;
       $_SESSION['admEscala'] = $row->admEscala;
+      $_SESSION['grafAcess'] = $row->grafAcess;
   }
 
 }
