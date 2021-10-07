@@ -118,7 +118,7 @@ if(!isset($_SESSION))
                         $dadologin = $quelogin->execute();
                         $juvenal = $quelogin->rowCount();
                         if($juvenal == 0){
-                            echo "pamanho";
+                            //echo "pamanho";
                             $queinto = "INSERT INTO `inventario`.`last_login` (`cod_user`) VALUES ('" . $row->valor . "');";
                         }else{
                             $queinto = "UPDATE `inventario`.`last_login` SET penultimo = `data`, parametro = parametro + 1 WHERE  `cod_user`='" . $row->valor . "';";
