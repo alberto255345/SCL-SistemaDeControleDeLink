@@ -240,7 +240,7 @@ $(document).ready(function() {
         $('#plantaoid').animate({  height: "toggle",  opacity: "toggle"}, {  duration: "slow"});
         // $("#retornoalert2").removeClass("cont2");
         $('#container1').animate({  height: "toggle",  opacity: "toggle"}, {  duration: "slow"});
-        ajustar();
+        // ajustar();
     });
 
     $( "#btn642" ).click(function() {
@@ -249,7 +249,7 @@ $(document).ready(function() {
         $('#plantaoid').animate({  height: "toggle",  opacity: "toggle"}, {  duration: "slow"});
         $("#container2").removeClass("cont2");
         $('#container1').animate({  height: "toggle",  opacity: "toggle"}, {  duration: "slow"});
-        ajustar();
+        // ajustar();
 
     });
 
