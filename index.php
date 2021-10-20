@@ -86,7 +86,7 @@ if(isset($_SESSION['usuario_log'])){
 
           <div id="container2" class="container gssss cont2 colorr1">
                 <div class="configdiv valro">
-                    <div>SGT</div>
+                    <div>SCL</div>
                 </div>
                 <div class="configdiv gfhs">
                 <div class="progress">
